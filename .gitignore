@@ -1,0 +1,11 @@
+# Planning spreadsheets contain contact emails and internal notes; never commit them
+*.xlsx
+*.xls
+*.csv
+
+# Local Python environment
+.venv/
+__pycache__/
+
+# Generated for artifact publishing only
+build/

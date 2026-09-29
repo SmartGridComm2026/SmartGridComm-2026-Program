@@ -1,0 +1,1628 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SmartGridComm 2026 Program</title>
+<style>
+/* Visual design follows the WF-PST program stylesheet. */
+:root{
+  color-scheme:light;
+  --brand:#00629b; --brand-dark:#003b5c; --ink:#1a2531; --muted:#5b6b7b;
+  --line:#e4e9ef; --bg:#f6f8fb; --card:#fff; --page:#eef2f6;
+  --keynote:#b8860b; --panel:#0d8a8a; --workshop:#2e8b57; --tutorial:#c2601a;
+  --dac:#5b53b5; --co:#0f7ea8; --cn:#a13d82; --cps:#c0392b; --joint:#6b7a1f;
+  --social:#9a5b2e; --special:#5a6b82; --break:#8896a6;
+}
+*{box-sizing:border-box}
+body{background:var(--page);color:var(--ink);margin:0;padding:24px 16px 40px;
+  font-family:"Segoe UI",system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;line-height:1.5}
+h1,h2,h3,h4,p{margin:0}
+.program{background:var(--bg);border-radius:14px;overflow:clip;max-width:1240px;margin:0 auto;box-shadow:0 1px 3px rgba(15,40,70,.08)}
+
+.hero{background:linear-gradient(135deg,var(--brand-dark),var(--brand) 70%);color:#fff;padding:40px 20px 34px;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-80px;top:-80px;width:300px;height:300px;background:radial-gradient(circle,rgba(255,255,255,.12),transparent 70%);border-radius:50%}
+.eyebrow{letter-spacing:.14em;text-transform:uppercase;font-size:.82rem;font-weight:600;opacity:.9;max-width:60ch}
+.hero h1{font-size:2.55rem;line-height:1.14;margin:10px 0 8px;font-weight:700;max-width:none;text-wrap:balance}
+.hmeta{display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:16px;font-size:1.12rem}
+.draft{position:absolute;right:20px;top:18px;z-index:1;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border:1px dashed rgba(255,255,255,.6);padding:4px 8px;border-radius:6px}
+
+.legend{display:flex;flex-wrap:wrap;gap:10px 18px;padding:16px 20px 12px}
+.chip{display:inline-flex;align-items:center;gap:8px;font-size:.95rem;color:var(--muted)}
+.dot{width:13px;height:13px;border-radius:3px;flex:none}
+
+nav.days{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:rgba(246,248,251,.94);backdrop-filter:blur(8px);
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:10px 20px;display:flex;gap:8px;overflow-x:auto}
+nav.days button{font:inherit;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:11px 20px;border-radius:10px;
+  font-size:1.05rem;font-weight:600;cursor:pointer;white-space:nowrap;display:flex;flex-direction:column;align-items:flex-start;line-height:1.2;transition:.15s}
+nav.days button small{font-weight:500;color:var(--muted);font-size:.82rem}
+nav.days button:hover{border-color:var(--brand)}
+nav.days button:focus-visible{outline:3px solid var(--brand);outline-offset:2px}
+nav.days button.glance{margin-left:auto;border-color:var(--brand-dark);color:var(--brand-dark)}
+nav.days button[aria-selected="true"]{background:var(--brand);color:#fff;border-color:var(--brand)}
+nav.days button.glance[aria-selected="true"]{background:var(--brand-dark);border-color:var(--brand-dark)}
+nav.days button[aria-selected="true"] small{color:rgba(255,255,255,.85)}
+
+.view{padding:24px 20px 54px}
+.dhead{margin-bottom:16px}
+.dhead h2{font-size:1.4rem;font-weight:700}
+.dhead p{color:var(--muted);font-size:.92rem;margin-top:2px}
+
+.slot{display:grid;grid-template-columns:92px 1fr;gap:16px;padding:10px 0;border-top:1px solid var(--line)}
+.dhead + .slot{border-top:none}
+.time{font-weight:700;color:var(--brand-dark);font-size:.9rem;padding-top:12px;font-variant-numeric:tabular-nums}
+.time small{display:block;font-weight:500;color:var(--muted);font-size:.72rem}
+.ss{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));align-items:start}
+.ss.one{grid-template-columns:1fr}
+
+.sx{--k:var(--special);background:var(--card);border:1px solid var(--line);border-left:7px solid var(--k);border-radius:10px;padding:12px 15px;min-width:0}
+.sx .kind{font-size:.82rem;letter-spacing:.05em;text-transform:uppercase;font-weight:700;color:var(--k)}
+.sx .room{float:right;margin-left:8px;font-size:.74rem;color:var(--muted);font-weight:600;background:var(--bg);border:1px solid var(--line);padding:2px 9px;border-radius:20px}
+.sx h3{font-size:1.02rem;font-weight:650;margin:5px 0 2px;line-height:1.3}
+.sx .who{font-size:.95rem;color:var(--muted)}
+.sx .who b{color:var(--ink);font-weight:600}
+.sx .meta{font-size:.9rem;color:var(--muted);margin-top:5px}
+.sx.k-break,.gi.k-break{background:#fbfcfe}
+.sx.tbd{border-left-style:dashed;background:repeating-linear-gradient(135deg,#fff,#fff 10px,#fafbfd 10px,#fafbfd 20px)}
+
+.papers{margin-top:10px;border-top:1px solid var(--line);padding-top:6px}
+.papers h4{font-size:.78rem;letter-spacing:.05em;text-transform:uppercase;color:var(--k);margin:8px 0 2px}
+.pp{display:grid;grid-template-columns:1fr;gap:2px;padding:7px 0}
+.pp + .pp{border-top:1px dashed var(--line)}
+.pid{font-size:.72rem;font-weight:600;color:var(--muted);font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.ptitle{font-size:.92rem;font-weight:600;line-height:1.35}
+.pauth{font-size:.84rem;color:var(--muted)}
+.chair{font-size:.9rem;color:var(--muted);margin:4px 0 2px}
+
+.ggrid{display:grid;grid-template-columns:repeat(var(--cols,3),minmax(0,1fr));gap:14px}
+.gcol{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.gcol h3{background:var(--brand);color:#fff;font-size:.92rem;padding:10px 12px;font-weight:650}
+.gcol h3 small{display:block;font-weight:500;opacity:.85;font-size:.72rem}
+.gi{--k:var(--special);padding:8px 12px;border-top:1px solid var(--line);border-left:6px solid var(--k)}
+.gi .gt{font-size:.72rem;font-weight:700;color:var(--brand-dark);font-variant-numeric:tabular-nums}
+.gi .gk{font-size:.7rem;letter-spacing:.04em;text-transform:uppercase;font-weight:700;color:var(--k)}
+.gi .gh{font-size:.82rem;line-height:1.3;margin-top:1px}
+.gi .gw{font-size:.75rem;color:var(--muted);margin-top:1px}
+.gi.par{display:grid;grid-template-columns:1fr 1fr;gap:8px 10px;border-left-color:var(--line)}
+.gi.par>div{min-width:0;border-left:4px solid var(--k);padding-left:7px}
+.gi.par .gt{grid-column:1/-1}
+
+.k-keynote{--k:var(--keynote)} .k-panel{--k:var(--panel)} .k-workshop{--k:var(--workshop)} .k-tutorial{--k:var(--tutorial)}
+.k-dac{--k:var(--dac)} .k-co{--k:var(--co)} .k-cn{--k:var(--cn)} .k-cps{--k:var(--cps)} .k-joint{--k:var(--joint)}
+.k-social{--k:var(--social)} .k-special{--k:var(--special)} .k-break{--k:var(--break)}
+
+.program > footer{border-top:1px solid var(--line);padding:20px;color:var(--muted);font-size:.8rem;text-align:center}
+@media(max-width:820px){.ggrid{grid-template-columns:1fr}}
+@media(max-width:560px){
+  .hero h1{font-size:1.75rem}
+  .draft{position:static;display:inline-block;margin-bottom:12px}
+  .slot{grid-template-columns:64px 1fr;gap:10px}
+  .time{font-size:.8rem}
+}
+@media (prefers-reduced-motion:reduce){nav.days button{transition:none}}
+</style>
+</head>
+<body>
+
+
+<div class="program">
+  <header class="hero">
+    <span class="draft">Draft · from planning sheet</span>
+    <div class="eyebrow" id="eyebrow"></div>
+    <h1 id="conf-name"></h1>
+    <div class="hmeta" id="hmeta"></div>
+  </header>
+  <div class="legend" id="legend"></div>
+  <nav class="days" role="tablist" id="tabs"></nav>
+  <main id="views"></main>
+  <footer id="foot"></footer>
+</div>
+
+<script>
+const CONF = {
+  eyebrow: "IEEE International Conference on Communications, Control, and Computing Technologies for Smart Grids",
+  name: "IEEE SmartGridComm 2026",
+  meta: ["📅 <strong>October 26–29, 2026</strong>", "📍 <strong>College Station, Texas</strong>", "🎤 Keynotes · Panels · Technical Papers · Workshops · Tutorials"],
+  glanceDays: [1, 2, 3],
+  glanceNote: "Presentation days (Days 2–4) · October 27–29, 2026 · Day 1 = workshops & tutorials (see Day 1 tab)",
+  footer: "All times are Central Time. Numbers above paper titles are paper IDs. Draft program, subject to change."
+};
+/* Generated from the planning spreadsheet by build_program.py */
+const DAYS = [
+{
+"tab": "Day 1",
+"short": "Mon · Oct 26",
+"title": "Day 1 — Monday, October 26",
+"sub": "Workshops & tutorials · Registration opens 8:00 AM · Welcome reception 6:00 PM",
+"slots": [
+{
+"start": "08:00",
+"end": "17:00",
+"note": "all day",
+"items": [
+{
+"kind": "special",
+"label": "Registration",
+"room": "Pre-Function I & II",
+"title": "Main Registration Desk Open"
+}
+]
+},
+{
+"start": "09:00",
+"end": "10:30",
+"note": "morning",
+"items": [
+{
+"kind": "workshop",
+"label": "Workshop 1 · Part 1 of 4",
+"room": "Century I & II",
+"title": "Cyber-Physical Power System Resilience",
+"meta": "Keynotes: two speakers, 30-minute talk + 15-minute Q&A each",
+"glance": "Cyber-Physical Power System Resilience"
+},
+{
+"kind": "tutorial",
+"label": "Tutorial 2 · Part 1 of 2",
+"room": "Traditions",
+"title": "Agentic AI for Active Distribution Networks"
+},
+{
+"kind": "tutorial",
+"label": "Tutorial 3 · Part 1 of 2",
+"room": "Ross",
+"title": "LLM-Powered Agentic AI"
+},
+{
+"kind": "tutorial",
+"label": "Tutorial 1 · Part 1 of 2",
+"room": "Corps",
+"title": "Quantum Secure 6G"
+}
+]
+},
+{
+"start": "10:30",
+"end": "11:00",
+"note": null,
+"items": [
+{
+"kind": "break",
+"title": "Morning Coffee & Networking"
+}
+]
+},
+{
+"start": "11:00",
+"end": "12:30",
+"note": null,
+"items": [
+{
+"kind": "workshop",
+"label": "Workshop 1 · Part 2 of 4",
+"room": "Century I & II",
+"title": "Cyber-Physical Power System Resilience",
+"meta": "Panel: four speakers, 12-minute talk + 3-minute Q&A each, then a 30-minute discussion"
+},
+{
+"kind": "tutorial",
+"label": "Tutorial 2 · Part 2 of 2",
+"room": "Traditions",
+"title": "Agentic AI for Active Distribution Networks"
+},
+{
+"kind": "tutorial",
+"label": "Tutorial 3 · Part 2 of 2",
+"room": "Ross",
+"title": "LLM-Powered Agentic AI"
+},
+{
+"kind": "tutorial",
+"label": "Tutorial 1 · Part 2 of 2",
+"room": "Corps",
+"title": "Quantum Secure 6G"
+}
+]
+},
+{
+"start": "12:30",
+"end": "13:30",
+"note": null,
+"items": [
+{
+"kind": "break",
+"title": "Lunch, Networking & Industry Exhibits",
+"room": "Century I & II"
+}
+]
+},
+{
+"start": "13:30",
+"end": "15:30",
+"note": "afternoon",
+"items": [
+{
+"kind": "workshop",
+"label": "Workshop 1 · Part 3 of 4",
+"room": "Century I & II",
+"title": "Cybersecurity, AI, and Threat Detection",
+"meta": "Cyber-Physical Power System Resilience · Includes Workshop 2, Agentic Energy Systems in Smart Grids (merged)",
+"groups": [
+{
+"title": "Cybersecurity, AI, and Threat Detection",
+"papers": [
+[
+"1571312048",
+"Evaluating Jailbreaking Vulnerabilities in LLMs Deployed as Assistants for Smart Grid Operations: A Benchmark Against NERC Standards",
+"Taha Hammadia, Lucas Rea and Ahmad Abdelsamie (University of Toronto, Canada); Amr Youssef (Concordia University, Canada); Deepa Kundur (University of Toronto, Canada)"
+],
+[
+"1571312496",
+"Explainable Topology-Aware Graph Autoencoder for Cyberattack Detection and Node-Feature Localization in Cyber-Resilient Power Systems",
+"Saleh Sadeghi Gougheri, Akram Heidarizadeh, Mostafa Goodarzi, Md Moshiur Rahman, George Atia and Wei Sun (University of Central Florida, USA)"
+],
+[
+"1571319752",
+"MultiGuard: Joint Intrusion Detection and State Estimation via Heterogeneous GNN in Power CPS",
+"Abhijeet Sahu and Venkateswara Reddy Motakatla (NLR, USA); Harsha Vardhan Padullaparti (Xcel Energy, USA)"
+],
+[
+"1571319847",
+"PowerGuard (PG2): A Physics-SDN Fusion for Defending Topology Poisoning Attacks in Active Distribution Networks",
+"Alaa Selim (Dartmouth College); Junbo Zhao (Dartmouth College, USA)"
+],
+[
+"1571319342",
+"One Inverter, Two Trust Boundaries: False-Data Injection and Detection Across the Modbus RTU and TCP Interfaces of a Grid-Edge PV/EV System",
+"Adnan Kujovic (Technische Hochschule Mittelhessen, Germany); Rahamatullah Khondoker (THM University of Applied Sciences, Germany)"
+],
+[
+"1571319405",
+"Trust-Based Localization of Compromised Meters in EV-Integrated Smart Grids under Energy Theft Attacks",
+"Shengwen Ding and Mai Abdelhakim (University of Pittsburgh, USA)"
+],
+[
+"1571319904",
+"Reliability of Cyber-Attack Detection for Cyber-Physical Systems via Dynamic State Estimation",
+"Sakis Meliopoulos (Georgia Tech, USA); George J. Cokkinides (Georgia Institute of Technology, USA)"
+],
+[
+"1571319181",
+"Explainable Post-Disaster Grid Observability Recovery Using Human-Oversight Agentic LLMs",
+"Biswas Rudra Jyoti Arka (SIUC, USA); Sadman Sakib (MSU, USA); Md Zahidul Islam (Southern Illinois University Carbondale, USA); Shamsun Nahar Edib (Montana State University, USA)"
+],
+[
+"1571319234",
+"Agentic Cryptographic Agility for Post-Quantum Smart Grid Communications",
+"Abdullah Aydeger (Florida Institute of Technology, USA); Ahmet Kurt (East Texas A&M University, USA)"
+]
+]
+}
+]
+},
+{
+"kind": "workshop",
+"label": "Workshop 3 · Part 1 of 2",
+"room": "Corps",
+"title": "Digital Twin for Smart Grid",
+"meta": "Keynote / panel"
+}
+]
+},
+{
+"start": "15:30",
+"end": "16:00",
+"note": null,
+"items": [
+{
+"kind": "break",
+"title": "Afternoon Coffee Break"
+}
+]
+},
+{
+"start": "16:00",
+"end": "17:30",
+"note": null,
+"items": [
+{
+"kind": "workshop",
+"label": "Workshop 1 · Part 4 of 4",
+"room": "Century I & II",
+"title": "Power System Resilience and Recovery",
+"meta": "Cyber-Physical Power System Resilience",
+"groups": [
+{
+"title": "Power System Resilience and Recovery",
+"papers": [
+[
+"1571313197",
+"Preventive Controlled Islanding Against Multiple Probabilistic Cyber Threats in Power Grids",
+"Sho Cremers (CWI, The Netherlands); Alexandru Stefanov (Delft University of Technology, The Netherlands); Marten van Dijk and Han La Poutre (CWI, The Netherlands)"
+],
+[
+"1571313270",
+"Cyber-Physical Resilience Assessment of Graph Reinforcement Learning-Based Outage Management Under False Data Injection Attacks",
+"Sayemul Islam and Mucun Sun (Idaho National Laboratory, USA); Mohammad Ashiqur Rahman (Florida International University, USA)"
+],
+[
+"1571313284",
+"Distributed MPC-Augmented Grid-Forming Control for Resilient Black-Start Restoration",
+"Mohsen Alizadeh, Wei Sun and Yousef Abudyak (University of Central Florida, USA)"
+],
+[
+"1571313726",
+"Data-Calibrated Climate Outage Stress Testing for Joint Power-Communication Networks",
+"Yoneke Graham (Nevada System of Higher Education, USA); Gelila Webster (University of Nevada, Las Vegas, USA); Tina Tran (Nevada System of Higher Education, USA); Sohini Roy (University of Nevada, Las Vegas, USA)"
+],
+[
+"1571318168",
+"A Machine-Learning Surrogate for Component Criticality Ranking in Interdependent Power-Communication Networks",
+"Sohini Roy and Xheni Hylviu (University of Nevada, Las Vegas, USA)"
+],
+[
+"1571319141",
+"Resilience Revisited: A Multidimensional Framework Derived from Realistic Attack Scenarios",
+"Isaac Ortega Romero and Ioannis Zografopoulos (University of Massachusetts Boston, USA)"
+],
+[
+"1571319819",
+"Cyber-Physical Interdependencies in Large Computational Load-Integrated Power Systems",
+"Arun Kumar Karngala and Nitasha Sahani (Eaton, USA)"
+],
+[
+"1571319878",
+"Cyber-Resilience Metrics for Power Grid OT Networks: Assessment and Path Forward",
+"Md Fazley Rafy, Mohammed Mustafa Hussain and Anurag. K Srivastava (West Virginia University, USA)"
+],
+[
+"1571319915",
+"Communication-Aware PMU Placement for Cost-Effective and Resilient Wide-Area Measurement Systems",
+"Lamiya Rahman and Shamsun Nahar Edib (Montana State University, USA)"
+]
+]
+}
+]
+},
+{
+"kind": "workshop",
+"label": "Workshop 3 · Part 2 of 2",
+"room": "Corps",
+"title": "Digital Twins",
+"meta": "Digital Twin for Smart Grid",
+"groups": [
+{
+"title": "Digital Twins",
+"papers": [
+[
+"1571313248",
+"Digital Twin-Driven Cyber Attack Impact Analysis for Power Grid Operational Resilience",
+"Syed Shafiulla, May Myat Thwe, Abhishek Saini and Alexandru Stefanov (Delft University of Technology, The Netherlands)"
+],
+[
+"1571317963",
+"Real-Time Cyber-Physical Smart Power Distribution Testbed with SMART-DS Dataset",
+"Edwin Kwesi Ansah Tenkorang (Texas A&M University - College Station, USA); Vinicius Mazzilli Bobato, Adel Heidari-Akhijahani, Ana E Goulart and Karen Butler-Purry (Texas A&M University, USA)"
+],
+[
+"1571318638",
+"EVSecSim: Cyber Twin of EV-Charging Infrastructure for Cybersecurity Training and Exercise",
+"Wang Jun Keat Bryan and Revati Godase (Singapore University of Technology and Design, Singapore); Jit Biswas (Singapore U of Tech and Design, Singapore); Daisuke Mashima (Singapore University of Technology and Design, Singapore)"
+],
+[
+"1571319741",
+"Physics-Enforced Power System Dynamics Data Generation via MeanFlow and Newton Refinement",
+"Zhangrong Gu and Yue Zhao (Stony Brook University, USA)"
+]
+]
+}
+]
+}
+]
+},
+{
+"start": "18:00",
+"end": "20:00",
+"note": null,
+"items": [
+{
+"kind": "social",
+"label": "Networking",
+"title": "Welcome Reception",
+"meta": "Location to be announced",
+"tbd": true
+}
+]
+}
+]
+},
+{
+"tab": "Day 2",
+"short": "Tue · Oct 27",
+"title": "Day 2 — Tuesday, October 27",
+"sub": "Opening, keynotes & parallel paper sessions · Gala dinner 7:00 PM",
+"slots": [
+{
+"start": "08:00",
+"end": "17:00",
+"note": "all day",
+"items": [
+{
+"kind": "special",
+"label": "Registration",
+"room": "Pre-Function I & II",
+"title": "Registration Desk Open"
+}
+]
+},
+{
+"start": "08:45",
+"end": "09:00",
+"note": null,
+"items": [
+{
+"kind": "special",
+"label": "Welcome",
+"room": "Century I & II",
+"title": "Welcome & Opening Remarks",
+"people": [
+[
+"Speakers",
+"Dr. Davis & Dr. Narasimha Reddy",
+"Texas A&M University"
+]
+]
+}
+]
+},
+{
+"start": "09:00",
+"end": "10:00",
+"note": null,
+"items": [
+{
+"kind": "keynote",
+"label": "Keynote I · Opening Keynote",
+"room": "Century I & II",
+"title": "Dr. Vince Poor",
+"people": [
+[
+"Affiliation",
+"Princeton University",
+""
+]
+],
+"meta": "Talk title to be announced",
+"gk": "Keynote I",
+"glance": "Dr. Vince Poor, Princeton University"
+}
+]
+},
+{
+"start": "10:00",
+"end": "10:15",
+"note": null,
+"items": [
+{
+"kind": "break",
+"title": "Coffee Break & Poster Session I"
+}
+]
+},
+{
+"start": "10:15",
+"end": "12:15",
+"note": "parallel",
+"items": [
+{
+"kind": "dac",
+"label": "Data Analytics & Computation · Session 1",
+"room": "Century I & II",
+"title": "Learning for Decision Making and Control",
+"chair": "Chair: Ying Zhang (Oklahoma State University)",
+"meta": "5 papers",
+"groups": [
+{
+"title": "Learning for Decision Making and Control",
+"papers": [
+[
+"1571268589",
+"Learning Sequential Decision-Making for Distributed Generation Planning in Smart Grids",
+"Somayeh Mehri, Di Shi and Fengyu Wang (New Mexico State University, USA); Ying Zhang (Oklahoma State University, USA); Faraz Dadgostari (Montana State University, USA)"
+],
+[
+"1571282156",
+"A Multi-Stage Warm-Start Deep Learning Framework for Unit Commitment",
+"Muhy Eddin Zater (University of Colorado Boulder, USA); Anna Van Boven (Research Assistant, USA); Bri-Mathias Hodge (CU Boulder, USA); Kyri Baker (University of Colorado, Boulder, USA)"
+],
+[
+"1571287507",
+"ECOSense: Carbon-Aware Agent Coordination for Distributed AI Services under Great Britain Regional Carbon-Intensity Signals",
+"Hui Wu, Xiaoyang Wang and Zhong Fan (University of Exeter, United Kingdom (Great Britain))"
+],
+[
+"1571288927",
+"Feasibility-Aware Security-Constrained Unit Commitment via Hybrid Soft Actor-Critic with Quantum-Sampled Features",
+"George Dimas, Amin Masoumi and Mert Korkali (University of Missouri, USA)"
+],
+[
+"1571289127",
+"SustainRL-Bench: A Three-Axis RL Benchmark for Sustainable Energy Systems",
+"Mehmet Koruturk and Bilgehan Sel (Virginia Polytechnic Institute and State University, USA); Ming Jin (Virginia Tech, USA)"
+]
+]
+}
+],
+"gk": "Data Analytics 1",
+"glance": "Learning for Decision Making and Control"
+},
+{
+"kind": "co",
+"label": "Control & Operation · Session 1",
+"room": "Traditions",
+"title": "Distributed Resources",
+"chair": "Chair: to be announced",
+"meta": "5 papers",
+"groups": [
+{
+"title": "Distributed Resources",
+"papers": [
+[
+"1571279549",
+"FreightV2VC: Extending Electric Truck Fleet Range with Vehicle-to-Vehicle Charging",
+"Cláudio Gomes (Carnegie Mellon University, USA & University of Porto, Portugal); João Paulo Fernandes (New York University Abu Dhabi, United Arab Emirates); Gabriel Falcao (New York University Abu Dhabi; University of Coimbra; Instituto de Telecomunicações); Soummya Kar and Sridhar Tayur (Carnegie Mellon University, USA)"
+],
+[
+"1571288070",
+"Circuit-Based Analysis of Per-Panel Diode Model for Photovoltaic Array",
+"Sang Peng (University of Vermont, USA); Santhosh Balasubramanian (Purdue University, USA); Amritanshu Pandey (University of Vermont, USA)"
+],
+[
+"1571289150",
+"Robust Hierarchical Passivity-Based Terminal Sliding Mode Control for Grid-Forming Inverter-Based Resources",
+"Koto Andrew Omiloli and Satish Vedula (Florida State University, USA); Ayobami Olajube (Florida State University, Tallahassee, United States, USA); Olugbenga M Anubi (Florida State University & Center for Advanced Power Systems, USA)"
+],
+[
+"1571289515",
+"AC-DC Coupled Current Limiting and Virtual Impedance-Based Control for Fault-Resilient Grid-Forming Converters",
+"Dileep Cheerla (GridAxon Inc, USA); Amirthagunaraj Yogarathnam (GridAxon Inc, USA)"
+],
+[
+"1571289720",
+"A Comprehensive Performance Assessment of Continuous and Discontinuous PWM Strategies and Output Filters for Grid-Connected BESS Inverters With CHIL Validation",
+"Sepehr Karimi (West Virginia University, USA)"
+]
+]
+}
+],
+"gk": "Control & Ops 1",
+"glance": "Distributed Resources"
+},
+{
+"kind": "cn",
+"label": "Communications & Networking · Session 1",
+"room": "Ross",
+"title": "Network Analysis",
+"chair": "Chair: Ioannis (Yannis) Zografopoulos · Co-chair: Anurag Srivastava",
+"meta": "5 papers",
+"groups": [
+{
+"title": "Network Analysis",
+"papers": [
+[
+"1571287854",
+"Optimization of Lossy Compression for Linear State Estimation",
+"Pedro Aquino de Alcantara (Michigan Technological University, USA); Sherif Fahmy (Hubbell Incorporated, USA); Daniel Fuhrmann (Michigan Technological University, USA)"
+],
+[
+"1571288292",
+"Transformer is All You Need: Attention-Based Anomaly Detection and Classification in Inverter-Rich Power Systems",
+"Emad Abukhousa (Georgia Institute of Technology, USA); Saman Zonouz and Sakis Meliopoulos (Georgia Tech, USA)"
+],
+[
+"1571289334",
+"Improving Admissibility of Time-Sensitive Flows in Industrial Operational Technology Networks",
+"Taposh Kumer Sarker (University of Texas at El Paso, USA); Deepak K Tosh (University of Texas, El Paso, USA); Shirley V Moore (University of Texas at El Paso, USA); Joshua Suetterlein (Pacific Northwest National Laboratory, USA)"
+],
+[
+"1571289369",
+"SGNetGen: Generation of Smart Grid Network Topologies from Open Data",
+"Felix Neumeister (Karlsruhe Institute of Technology, Germany); Martina Zitterbart (KIT, Germany)"
+],
+[
+"1571289749",
+"Smart Grid Network Security Policy Compliance Analyzer for Reduced Human Effort",
+"Atul Bohara (Relativity, USA)"
+]
+]
+}
+],
+"gk": "Comms & Networking 1",
+"glance": "Network Analysis"
+},
+{
+"kind": "cps",
+"label": "Cyber-Physical Security & Privacy · Session 1",
+"room": "Corps",
+"title": "Testbed and Security",
+"chair": "Chair: Daisuke Mashima (Singapore University of Technology and Design)",
+"meta": "5 papers",
+"groups": [
+{
+"title": "Testbed and Security",
+"papers": [
+[
+"1571289224",
+"Enhancing Security of Grid Control Systems through In-network Collaboration of Programmable Data Planes",
+"Yuexin Chen, Reuben Samson Raj, Xiaoyu Guo and Dong Jin (University of Arkansas, USA)"
+],
+[
+"1571283367",
+"Higher-Order Topology-Aware Attack Strategies Against Smart Grids",
+"Salma Aboelmagd (Florida State University, USA); Md. Mainul Islam (Texas A&M University, USA & College Station, USA); Bianca Avlonitis (Florida State University, USA); Rachad Atat (Lebanese American University, Lebanon); Muhammad Ismail (Tennessee Tech University, USA); Erchin Serpedin (Texas A&M University, USA); Abdulrahman Takiddin (Florida State University, USA)"
+],
+[
+"1571289384",
+"HIL Cyber Physical Test Bed with SEL and DER Integrations",
+"Zachary C Harris, Chris Farnell, Gabriel Rea and Wesley G Schwartz (University of Arkansas, USA)"
+],
+[
+"1571280295",
+"A High-Fidelity Cyber-Physical Test Bed for Emulating Cybersecurity Exploits and Assessing Their Impacts on Distribution Grid Operations",
+"Motakatla Venkateswara Reddy (Reseracher-III, USA); Fei Ding (NLR, USA)"
+],
+[
+"1571278103",
+"Real-World Testbed and Unsupervised FDIA Detection for Secure Power Distribution Systems",
+"Rajendra Shrestha (Texas Tech, USA); Mostafa Mohammadpourfard (Texas Tech University, USA); Larissa Souto (TTU, USA); Manohar Chamana and Stephen Bayne (Texas Tech University, USA)"
+]
+]
+}
+],
+"gk": "Security & Privacy 1",
+"glance": "Testbed and Security"
+}
+]
+},
+{
+"start": "12:15",
+"end": "13:30",
+"note": null,
+"items": [
+{
+"kind": "break",
+"title": "Lunch",
+"room": "Century I & II"
+}
+]
+},
+{
+"start": "13:30",
+"end": "14:30",
+"note": null,
+"items": [
+{
+"kind": "keynote",
+"label": "Keynote II · Afternoon Keynote",
+"room": "Century I & II",
+"title": "Dr. Tom Overbye",
+"people": [
+[
+"Affiliation",
+"Texas A&M University",
+""
+]
+],
+"meta": "Talk title to be announced",
+"gk": "Keynote II",
+"glance": "Dr. Tom Overbye, Texas A&M University"
+}
+]
+},
+{
+"start": "14:30",
+"end": "14:45",
+"note": null,
+"items": [
+{
+"kind": "break",
+"title": "Afternoon Coffee Break"
+}
+]
+},
+{
+"start": "14:45",
+"end": "17:15",
+"note": "parallel",
+"items": [
+{
+"kind": "dac",
+"label": "Data Analytics & Computation · Session 2",
+"room": "Century I & II",
+"title": "Situational Awareness, Security, and Privacy",
+"chair": "Chair: Md Zahidul Islam (Southern Illinois University)",
+"meta": "6 papers",
+"groups": [
+{
+"title": "Situational Awareness, Security, and Privacy",
+"papers": [
+[
+"1571275441",
+"A Multi-Scale Privacy Framework for Smart Meter Data",
+"Soumadeep Bhowmick (University of Maryland, Baltimore County, USA); Anindya Roy (University of Maryland Baltimore County, USA); Kendall Parker (Pacific Northwest National Laboratory, USA & University of Florida, USA); David Jonathan Sebastian Cardenas (Pacific Northwest National Laboratory, USA)"
+],
+[
+"1571276083",
+"eNILM: Dynamic Device Integration in Non-Intrusive Load Monitoring",
+"Justus Breyer and Kilian Plachetka (RWTH Aachen University, Germany); Muhammad Hamad Alizai (LUMS, Pakistan); Klaus Wehrle (RWTH Aachen University, Germany)"
+],
+[
+"1571277267",
+"Bayesian Counterfactual Reasoning for Cyberattack Detection in Smart Grid Protective Relays",
+"Paul Budnarain (University of Toronto, Canada); Anthony Kemmeugne (University of Toronto, Canada & Hydro-Québec, Canada); Deepa Kundur (University of Toronto, Canada)"
+],
+[
+"1571277982",
+"A Semi-Supervised Approach for Power System Event Identification",
+"Nima Taghipourbazargani, Oliver Kosut and Lalitha Sankar (Arizona State University, USA)"
+],
+[
+"1571282703",
+"Optimal PMU Placement for Multi-Type Oscillation Monitoring in Power Systems: Methodology and Case Study in Reduced WECC System",
+"Xin He and Yuzhang Lin (New York University, USA); Lin Zhu and Sudipta Dutta (Electric Power Research Institute, USA); Jin Tan (NREL, USA); Fei Ding (NLR, USA)"
+],
+[
+"1571287631",
+"ProvICS: A Provenance-based Intrusion Detection for Industrial Control Systems",
+"Md Neyamul Islam Shibbir (The University of Texas at El Paso, USA); Deepak K Tosh (University of Texas, El Paso, USA)"
+]
+]
+}
+],
+"gk": "Data Analytics 2",
+"glance": "Situational Awareness, Security, and Privacy"
+},
+{
+"kind": "co",
+"label": "Control & Operation · Session 2",
+"room": "Traditions",
+"title": "Grid Control Mechanisms",
+"chair": "Chair: to be announced",
+"meta": "6 papers",
+"groups": [
+{
+"title": "Grid Control Mechanisms",
+"papers": [
+[
+"1571279866",
+"Resilient Spatiotemporal Coordination: Communication-Aware Multi-Agent Learning via Global Context Augmentation",
+"Zhixuan Ren (Beijing Jiaotong University, China); Guixiang Yang (Zhejiang University, China); Hao Zhang (Carnegie Mellon University, USA)"
+],
+[
+"1571280745",
+"Distributed Droop-Free Control of Grid-Forming Inverters with Dynamic Line and Load Modeling",
+"Hiya Akhil Gada (Massachusetts Institute of Technology, USA); Marija Ilić (Carnegie Mellon University, USA)"
+],
+[
+"1571285475",
+"Auxiliary Control Strategies for Co-Located Battery Energy Storage Systems to Enhance LVRT and Load Smoothing in Large Data Centers",
+"Amirthagunaraj Yogarathnam (GridAxon Inc, USA); Dileep Cheerla, Divya Jain and Satish Natti (GridAxon Inc,, USA)"
+],
+[
+"1571285491",
+"Federated Physics-Grounded Reinforcement Learning for Distributed Stability Control in Smart Grids",
+"Omar Al-Refai, Ibrahim Shahbaz, Adam Ali Husseinat and Eman Hammad (Texas A&M University, College Station, TX, USA)"
+],
+[
+"1571287391",
+"Microgrid Peak Shaving and Demand Charge Management Using Hierarchical Adaptive Control of a Grid-Tied BESS",
+"Md Ebrahim Hossain, Alexander Stevenson, Adil Amaan, Saikat Das and Arif Sarwat (Florida International University, USA)"
+],
+[
+"1571289462",
+"Inertia-Informed Federated Learning Control Framework for Distributed Smart Grid Resilience",
+"Ibrahim Shahbaz, Omar Al-Refai and Eman Hammad (Texas A&M University, College Station, TX, USA)"
+]
+]
+}
+],
+"gk": "Control & Ops 2",
+"glance": "Grid Control Mechanisms"
+},
+{
+"kind": "joint",
+"label": "Joint Session 1 · Communications & Networking + Power Line Communications",
+"room": "Ross",
+"title": "Power Line Communications · Secure Communications",
+"chair": "Chair: Daisuke Mashima · Co-chair: Alexandru Ștefanov",
+"meta": "6 papers",
+"groups": [
+{
+"title": "Power Line Communications",
+"papers": [
+[
+"1571281660",
+"A Novel IC Power Line Communication Transceiver for Application in Battery Management Systems",
+"Iacopo Nannipieri and Francesco Gagliardi (University of Pisa, Italy); Simone Contardi (University of Pisa, Italy & Sensichips Srl, Italy); Michele Dei, Paolo Bruschi and Massimo Piotto (University of Pisa, Italy)"
+],
+[
+"1571282526",
+"Characterization of Smart Meter front end for Disturbance Analysis up to 150 kHz",
+"Daniele Caruso (University of Palermo and National Research Council, Italy); Riccardo Fiorelli (STMicroelectronics, Italy); Giovanni Artale (University of Palermo, Italy); Antonio Cataliotti (Università degli Studi di Palermo, Italy); Nicola Panzavecchia (National Research Council, Italy); Giovanni Tinè (Italian National Research Council, Italy & Institute of Marine Engineering - PALERMO UNIT, Italy); Valentina Cosentino (University of Palermo, Italy); Vito Ditta (National Research Council - Institute of Marine Engineering, Italy); Dario Di Cara (National Research Council, Italy)"
+]
+]
+},
+{
+"title": "Secure Communications",
+"papers": [
+[
+"1571289092",
+"QUIC-TRIP: A Triple-Redundant Journey Toward Secure Substation Communications",
+"Jorge David de Hoz Diego (University College Dublin, Ireland); Ioannis Zografopoulos (University of Massachusetts Boston, USA); Anca Delia Jurcut (University College Dublin, Ireland)"
+],
+[
+"1571289219",
+"Quality-Aware Routing in Space-Integrated Industrial Cyber-Physical Systems",
+"Sajid Rashid (University of Texas at El Paso, USA); Deepak K Tosh (University of Texas, El Paso, USA)"
+],
+[
+"1571289323",
+"A Digital-Twin-Assisted Self-Healing Framework for Resilient Distributed IoE Edge Networks",
+"Henok Berhanu Tsegaye, Petro Mushidi Tshakwanda, Ashok Karukutla, Raddad Almaayn and Abid Mohammad Ali (University of New Mexico, USA); Harsh Kumar (University of Indianapolis, USA); Michael Devetsikiotis (University of New Mexico, USA)"
+],
+[
+"1571289330",
+"Application-Aware SDN Traffic Control at the 5G N6 Edge for Reliable Smart Grid Communications",
+"Ashok Karukutla, Raddad Almaayn, Henok Berhanu Tsegaye and Petro Mushidi Tshakwanda (University of New Mexico, USA); Harsh Kumar (University of Indianapolis, USA); Abid Mohammad Ali and Michael Devetsikiotis (University of New Mexico, USA)"
+]
+]
+}
+],
+"gk": "Joint 1",
+"glance": "Power Line Communications · Secure Communications"
+},
+{
+"kind": "cps",
+"label": "Cyber-Physical Security & Privacy · Session 2",
+"room": "Corps",
+"title": "Attack Detection",
+"chair": "Chair: Kevin Jin (University of Arkansas)",
+"meta": "6 papers",
+"groups": [
+{
+"title": "Attack Detection",
+"papers": [
+[
+"1571267885",
+"Heterogeneous Graph Representation Learning for Node-Level Anomaly Detection in Cyber-Physical Systems",
+"Sidney M Wright and Georgios Fragkos (Sandia National Laboratories, USA)"
+],
+[
+"1571276599",
+"Failure-Mode-Aware Detection of Coordinated and Stealthy Attacks in PMU-Based Power Grids",
+"Thamidu Naween (Royal Melbourne Institute of Technology, Australia); Malka N. Halgamuge (RMIT University, Melbourne, Australia); Sisil Kumarawadu (University of Moratuwa, Sri Lanka); Shahriar Kaisar (RMIT University, Australia); Velmanickam Logeeshan (University of Moratuwa, Sri Lanka)"
+],
+[
+"1571282944",
+"AdaptoNet: Modular Foundation-Adaptive Neural Networks for Cyber-Physical Attack Detection in Power Grids",
+"Anissa Elias (University of Rhode Island, USA); Jennifer Rogers (United States Coast Guard Academy, USA); Hui Lin and Yan (Lindsay) Sun (University of Rhode Island, USA)"
+],
+[
+"1571287545",
+"Attention-Enhanced Graph Filtering for False Data Injection Attack Detection and Localization",
+"Ruslan Abdulin and Mohammad Rasoul Narimani (California State University Northridge, USA)"
+],
+[
+"1571282931",
+"Masked-Fed: Secure Aggregated Federated Deep Learning Technique for Fault Detection in Grid-Following Inverters",
+"Anwer Shees and Arif Sarwat (Florida International University, USA)"
+],
+[
+"1571278127",
+"A Topology- and Attack-Adaptive Prototypical Network for Cyber-Attacks Detection in Reconfigurable Smart Power Distribution Systems",
+"Mostafa Shabanian-Poodeh (Ireland); Mostafa Mohammadpourfard (Texas Tech University, USA); Anamitra Pal (Arizona State University, USA); Suhas Pol (Texas Tech University, USA)"
+]
+]
+}
+],
+"gk": "Security & Privacy 2",
+"glance": "Attack Detection"
+}
+]
+},
+{
+"start": "19:00",
+"end": "22:00",
+"note": null,
+"items": [
+{
+"kind": "social",
+"label": "Networking",
+"title": "Conference Prefunction & Gala Dinner",
+"meta": "Location to be announced",
+"tbd": true,
+"glance": "Gala Dinner"
+}
+]
+}
+]
+},
+{
+"tab": "Day 3",
+"short": "Wed · Oct 28",
+"title": "Day 3 — Wednesday, October 28",
+"sub": "Keynote, industry panels & parallel paper sessions",
+"slots": [
+{
+"start": "08:30",
+"end": "16:00",
+"note": "all day",
+"items": [
+{
+"kind": "special",
+"label": "Registration",
+"room": "Pre-Function I & II",
+"title": "Registration Desk Open"
+}
+]
+},
+{
+"start": "08:45",
+"end": "09:00",
+"note": null,
+"items": [
+{
+"kind": "special",
+"label": "Welcome",
+"room": "Century I & II",
+"title": "Day 3 Welcome",
+"people": [
+[
+"Speaker",
+"Dr. Arum Han",
+""
+]
+]
+}
+]
+},
+{
+"start": "09:00",
+"end": "10:00",
+"note": null,
+"items": [
+{
+"kind": "keynote",
+"label": "Keynote III · Technical Keynote",
+"room": "Century I & II",
+"title": "Woody Rickerson",
+"people": [
+[
+"Affiliation",
+"ERCOT",
+""
+]
+],
+"meta": "Talk title to be announced",
+"gk": "Keynote III",
+"glance": "Woody Rickerson, ERCOT"
+}
+]
+},
+{
+"start": "10:00",
+"end": "10:15",
+"note": null,
+"items": [
+{
+"kind": "break",
+"title": "Coffee Break & Poster Session II"
+}
+]
+},
+{
+"start": "10:15",
+"end": "12:15",
+"note": null,
+"items": [
+{
+"kind": "panel",
+"label": "Panel 1 · Organized by OPAL-RT",
+"room": "Century I & II",
+"title": "Understanding the Role of Hardware-in-the-Loop Testing in Supporting Reliable Data Center Interconnections and Grid Operations",
+"meta": "Panelists to be announced",
+"glance": "Hardware-in-the-loop testing for data center interconnections"
+}
+]
+},
+{
+"start": "12:15",
+"end": "13:30",
+"note": null,
+"items": [
+{
+"kind": "break",
+"title": "Networking Lunch",
+"room": "Century I & II"
+}
+]
+},
+{
+"start": "13:30",
+"end": "14:30",
+"note": null,
+"items": [
+{
+"kind": "panel",
+"label": "Panel 2 · Industry Keynote & Roundtable",
+"room": "Century I & II",
+"title": "G3-Alliance Panel",
+"meta": "Fireside-chat format · Panelists to be announced"
+}
+]
+},
+{
+"start": "14:30",
+"end": "14:45",
+"note": null,
+"items": [
+{
+"kind": "break",
+"title": "Afternoon Coffee Break"
+}
+]
+},
+{
+"start": "14:45",
+"end": "17:15",
+"note": "parallel",
+"items": [
+{
+"kind": "dac",
+"label": "Data Analytics & Computation · Session 3",
+"room": "Century I & II",
+"title": "Prediction and Dynamics Forecasting",
+"chair": "Chair: Yuzhang Lin (New York University)",
+"meta": "6 papers",
+"groups": [
+{
+"title": "Prediction and Dynamics Forecasting",
+"papers": [
+[
+"1571275992",
+"Deployment-Efficient Short-Term Load Forecasting in AI Data Centers via Sequence-to-Point Knowledge Distillation",
+"Lei Wang, Jiahao Chen and Ying Zhang (Oklahoma State University, USA); Fanping Sui (University of California Berkeley, USA); Di Shi (New Mexico State University, USA)"
+],
+[
+"1571276740",
+"Adaptive In-Context Operator Learning for Fast Power System Dynamic Simulation",
+"Lei Wang, Di Shi and Fengyu Wang (New Mexico State University, USA); Kai Sun (University of Tennessee, USA)"
+],
+[
+"1571278033",
+"XF-HD: Oscillation Detection in Wind Farms with Forecasting and Hyperdimensional Computing",
+"Kabire Akbari (California State University San Marcos, USA); Owen Man (California Sate University San Marcos, USA); Hamed Nademi (California State University-San Marcos, USA); Sreedevi Gutta, Justin Morris and Ali Ahmadinia (California State University San Marcos, USA)"
+],
+[
+"1571284737",
+"Regime-Adaptive Weighted Ensemble Learning for Computing-Driven Dynamic Load Forecasting in AI Data Centers",
+"Ziying Wang, Ying Zhang and Lei Wang (Oklahoma State University, USA); Yuzhang Lin (New York University, USA)"
+],
+[
+"1571289386",
+"Parameters Overshadowed by Price Lags: Load, Climate, and Calendar Effects in ERCOT Day-Ahead Price Formation",
+"Yunus Biçen (Duzce University, Turkey); Eman Hammad (Texas A&M University, USA)"
+],
+[
+"1571289588",
+"Causal-Structural Dynamic Graph Learning for Online Transient Stability Trajectory Prediction in Power Systems",
+"Ibrahim Shahbaz, Omar Al-Refai, Isaac Lagoy, Ahmad Al-Khateeb, Sathvik Sankaranarayanan and Eman Hammad (Texas A&M University, College Station, TX, USA)"
+]
+]
+}
+],
+"gk": "Data Analytics 3",
+"glance": "Prediction and Dynamics Forecasting"
+},
+{
+"kind": "co",
+"label": "Control & Operation · Session 3",
+"room": "Traditions",
+"title": "Data Centers and Load Management",
+"chair": "Chair: to be announced",
+"meta": "6 papers",
+"groups": [
+{
+"title": "Data Centers and Load Management",
+"papers": [
+[
+"1571275009",
+"PowerChord: An Optimization Framework for Orchestrating Power-Grid-Aware Data Centers",
+"Fatih Acun, Can Hankendi, Ioannis Paschalidis and Ayse Coskun (Boston University, USA)"
+],
+[
+"1571276288",
+"Bottom-Up Dynamic Load Characterization of AI Data Centers Using Differential-Algebraic Equations",
+"Sachinth Viththarachchige (Center for Energy Studies, Wichita State University, USA); Sarangan Rajendran (Wichita State University, USA); Lilan Karunaratne (Pennsylvania State University, USA)"
+],
+[
+"1571281052",
+"Temperature-Based Workload Distribution for Thermal Control and Power Consumption in Geo-Distributed Data Centers",
+"Naruto Arai, Naoki Hanaoka and Toshihiro Hayashi (NTT Corporation, Japan)"
+],
+[
+"1571282932",
+"Peak Demand Minimization with Resizable Power Demands",
+"Caleb Eardley and Sean Yaw (Montana State University, USA)"
+],
+[
+"1571283739",
+"DC-CLM: Extending the WECC Composite Load Model for AI Data Center Dynamics",
+"Md Kibria Saroare, Md Rubel Ahmed and Arif Hussain (Louisiana Tech University, USA)"
+],
+[
+"1571289332",
+"Cyber-Physical Security of Uninterruptible Power Supply (UPS) Systems in AI Data Centers",
+"Milad Beikbabaei (Virginia Tech, USA); Bao Nguyen (Virginia Polytechnic Institute and State University, USA); Ali Mehrizi-Sani (Virginia Tech, USA)"
+]
+]
+}
+],
+"gk": "Control & Ops 3",
+"glance": "Data Centers and Load Management"
+},
+{
+"kind": "co",
+"label": "Control & Operation · Session 4",
+"room": "Ross",
+"title": "Prediction, Policy, & Incentives",
+"chair": "Chair: to be announced",
+"meta": "6 papers",
+"groups": [
+{
+"title": "Prediction, Policy, & Incentives",
+"papers": [
+[
+"1571288300",
+"Critical Weather Scenario Screening Using Weather-to-Voltage (W2V) Predictive Modeling",
+"Sol Lim (University of Texas at Austin, USA); Min-Seung Ko and Hao Zhu (The University of Texas at Austin, USA)"
+],
+[
+"1571278217",
+"Digital Twin for Real-Time Security Assessment and Flexibility Activation in the Bornholm Distribution System",
+"Anosh Arshad Sundhu, Aysegül Kahraman and Spyros Chatzivasileiadis (Technical University of Denmark (DTU), Denmark)"
+],
+[
+"1571287485",
+"Plugged in, Tuned Out? A Bipartite Exploration of Community Engagement in Smart Grid Networks",
+"Pepito Thelly (Texas A&M University - College Station, USA); Brendan Vohs (Texas A&M University, USA); Sita Syal (University Of Michigan, USA); Astrid Layton (Texas A&M University, USA)"
+],
+[
+"1571287766",
+"Prepaid Energy Assistance Kit: Design, benchmarking, and user assessment of a low-cost energy management platform",
+"Thomas Murphy, Alexander Shikhanovich and Maitreyee Marathe (University of Massachusetts Amherst, USA)"
+],
+[
+"1571288279",
+"Bilevel Optimization for Smart Grid Incentive Design: A Leader-Follower MDP Framework",
+"Athul Jose P (Washington State University at Tri-Cities, USA); Xinyi Wei (University of Florida, USA); Anamika Dubey (Washington State University, USA); Jie Fu (University of Florida, USA)"
+],
+[
+"1571277811",
+"Implementing Grid Code Compliance for Electric Vehicle Supply Equipment through Open Standards-Based Architecture",
+"Sheroze Liaquat, Biswajeet Rout, Daniel A Sanchez, Aravind Ingalalli, Gustavo Vianna Cezar and Dmitry Ishchenko (Eaton Corporation, USA); Vijay Bhavaraju (Eaton Corp, USA); Curtis Kirkeby, Cory Nguyen and Michael Burck (Open Energy Solutions, USA)"
+]
+]
+}
+],
+"gk": "Control & Ops 4",
+"glance": "Prediction, Policy, & Incentives"
+},
+{
+"kind": "cps",
+"label": "Cyber-Physical Security & Privacy · Session 3",
+"room": "Corps",
+"title": "Defense against Threats",
+"chair": "Chair: Taesic Kim (University of Missouri)",
+"meta": "6 papers",
+"groups": [
+{
+"title": "Defense against Threats",
+"papers": [
+[
+"1571274650",
+"Causal AI-Powered Dynamic ML Model Orchestration for Robust Cybersecurity",
+"Georgios Fragkos, J. Jake Nichol, Tian Yen, Logan Blakely, Shamina Hossain-McKenzie, Adrian Chavez and Sidney M Wright (Sandia National Laboratories, USA)"
+],
+[
+"1571277275",
+"Interpretable Moving Target Defense: SHAP-Based Attribution of FDIA Protection in Power Systems",
+"Chenhan Xiao (Arizona State University, USA); Mostafa Mohammadpourfard (Texas Tech University, USA); Yang Weng (Arizona State University, USA)"
+],
+[
+"1571278744",
+"Cyber-Physical Risk Analysis of SMR-Integrated Grid with Nuclear-Informed Graph Modeling",
+"Andrew Maehl (Texas A&M University, USA); Morgan Roberts (Texas A&M, USA); Shining Sun, Katherine Davis and Pavel Tsvetkov (Texas A&M University, USA)"
+],
+[
+"1571288719",
+"Machine Learning-Based Robust Distributed Economic Dispatch Under Data Integrity Attacks",
+"Md. Mainul Islam (Texas A&M University, USA & College Station, USA); Abdulrahman Takiddin (Florida State University, USA); Muhammad Ismail (Tennessee Tech University, USA); Hasan Kurban (Hamad Bin Khalifa University, Qatar); Erchin Serpedin (Texas A&M University, USA)"
+],
+[
+"1571289494",
+"Adversarially-Informed Node Criticality Identification in Power Grid Measurements",
+"Koto Andrew Omiloli (Florida State University, USA); Olugbenga M Anubi (Florida State University & Center for Advanced Power Systems, USA)"
+],
+[
+"1571289764",
+"Multi-Agent Hierarchical Reinforcement Learning for Adaptive Cyber-Physical System Defense",
+"Mohamed Massaoudi (Texas A&M University, USA); Maymouna Ez Eddin (Tarleton State University, USA); Katherine Davis (Texas A&M University, USA)"
+]
+]
+}
+],
+"gk": "Security & Privacy 3",
+"glance": "Defense against Threats"
+}
+]
+}
+]
+},
+{
+"tab": "Day 4",
+"short": "Thu · Oct 29",
+"title": "Day 4 — Thursday, October 29",
+"sub": "Keynote, final paper sessions, awards & closing · Optional tours 2:00 PM",
+"slots": [
+{
+"start": "08:30",
+"end": "12:00",
+"note": "morning",
+"items": [
+{
+"kind": "special",
+"label": "Registration",
+"room": "Pre-Function I & II",
+"title": "Registration Desk Open (morning only)"
+}
+]
+},
+{
+"start": "08:45",
+"end": "09:00",
+"note": null,
+"items": [
+{
+"kind": "special",
+"label": "Welcome",
+"room": "Century I & II",
+"title": "Day 4 Welcome"
+}
+]
+},
+{
+"start": "09:00",
+"end": "10:00",
+"note": null,
+"items": [
+{
+"kind": "keynote",
+"label": "Keynote IV · Morning Keynote",
+"room": "Century I & II",
+"title": "Dr. Veronica Adetola",
+"people": [
+[
+"Affiliation",
+"Pacific Northwest National Laboratory (PNNL)",
+""
+]
+],
+"meta": "Talk title to be announced",
+"gk": "Keynote IV",
+"glance": "Dr. Veronica Adetola, PNNL"
+}
+]
+},
+{
+"start": "10:00",
+"end": "10:15",
+"note": null,
+"items": [
+{
+"kind": "break",
+"title": "Morning Coffee Break"
+}
+]
+},
+{
+"start": "10:15",
+"end": "12:30",
+"note": "parallel",
+"items": [
+{
+"kind": "dac",
+"label": "Data Analytics & Computation · Session 4",
+"room": "Century I & II",
+"title": "Computation and Power Systems",
+"chair": "Chair: to be announced",
+"meta": "5 papers",
+"groups": [
+{
+"title": "Computation and Power Systems",
+"papers": [
+[
+"1571282581",
+"Sparse LU Solvers for Power System Applications: Revisiting GPU Acceleration",
+"Rebecca George (College of William & Mary, USA); Ahmad Ali (North Carolina State University, USA); Jie Ren (College of William & Mary, USA); Wenqian Dong (Oregon State University, USA); Hantao Cui (North Carolina State University, USA)"
+],
+[
+"1571282659",
+"An XGBoost-Based Three-Step Feature Learning Pipeline for Multi-Attack Classification in Network Traffic Data",
+"Zecheng Zhan and Hao Huang (University of Tennessee-Knoxville, USA)"
+],
+[
+"1571282858",
+"PowerGTN: Graph Transformers as Building Blocks of Power Flow Foundation Models",
+"Haoyang Li and Yuzhang Lin (New York University, USA)"
+],
+[
+"1571285343",
+"Fast and Certified Bounding of Security-Constrained DCOPF via Interval Bound Propagation",
+"Eren Tekeler and Samuel Chevalier (University of Vermont, USA); Xiangru Zhong (University of Illinois at Urbana-Champaign, USA); Huan Zhang (University of Illinois Urbana-Champaign, USA)"
+],
+[
+"1571289608",
+"A Bilevel Framework for Data Center-Grid Coordination with DLMPs in Unbalanced Three-Phase Distribution Systems",
+"Arash Baharvandi and Duong Tung Nguyen (Arizona State University, USA)"
+]
+]
+}
+],
+"gk": "Data Analytics 4",
+"glance": "Computation and Power Systems"
+},
+{
+"kind": "co",
+"label": "Control & Operation · Session 5",
+"room": "Traditions",
+"title": "Optimization and Power Flow",
+"chair": "Chair: to be announced",
+"meta": "6 papers",
+"groups": [
+{
+"title": "Optimization and Power Flow",
+"papers": [
+[
+"1571265161",
+"Rapid Concurrent GPU-CPU Solvers for Scalable Unit Commitment in Large Power Grids",
+"Hussein Sharadga (Texas A&M International University, USA); Yuhan Du and Javad Mohammadi (The University of Texas at Austin, USA)"
+],
+[
+"1571277921",
+"AC-OPF Feasibility Analysis and Sensitivity-Guided Capacitor Placement in a High-PV Islanded Microgrid",
+"Aaron Jones (Massachusetts Institute of Technology, USA); Marija Ilić (Carnegie Mellon University, USA)"
+],
+[
+"1571278758",
+"Improving Power Flow Solution Quality via Slack Bus Selection",
+"Anna Van Boven (Research Assistant, USA); Kyri Baker (University of Colorado, Boulder, USA)"
+],
+[
+"1571280545",
+"Distributed Augmented Lagrangian Optimisation Framework for Multi-Agent EV Charging in DC Microgrids",
+"Kirill Zhukovskii and Polina Ovsiannikova (Aalto University, Finland); Martin Stoiber and Freiberger Manuel (Silicon Austria Labs GmbH Graz, Austria); Valeriy Vyatkin (Aalto University, Finland & Lulea University, Sweden)"
+],
+[
+"1571287290",
+"Activate the Dual Cones: A Tight Reformulation of Conic ACOPF Constraints",
+"Saba Rafiei and Samuel Chevalier (University of Vermont, USA)"
+],
+[
+"1571289387",
+"Simulation and Sensitivity Analysis of Cold Wave Event Impact on Transmission Grid Infrastructure",
+"Brent Austgen and Alejandro D. Owen Aquino (Sandia National Laboratories, USA); Adam B. Birchfield, Joshua Xia and Thomas J. Overbye (Texas A&M University, USA); Austen Barker and Thomas M Kroeger (Sandia National Laboratories, USA)"
+]
+]
+}
+],
+"gk": "Control & Ops 5",
+"glance": "Optimization and Power Flow"
+},
+{
+"kind": "joint",
+"label": "Joint Session 2 · Cyber-Physical Security & Privacy + Data Analytics & Computation",
+"room": "Ross",
+"title": "Grid Analytics and Security · Inference and Detection",
+"chair": "Chair: to be announced",
+"meta": "5 papers",
+"groups": [
+{
+"title": "Grid Analytics and Security",
+"papers": [
+[
+"1571282716",
+"A Rule-Aware Prompt Framework for Structured Numeric Reasoning in Smart Grids",
+"Liu and Yichen Liu and Hongyu Wu (Kansas State University, USA); Bo Liu (Washington State University, USA)"
+],
+[
+"1571282832",
+"Graph Learning for Predicting Adversarial Cascades in Smart Grids",
+"Bao Hoang Duc Vo and Mina Guirguis (Texas State University, USA)"
+]
+]
+},
+{
+"title": "Inference and Detection",
+"papers": [
+[
+"1571286964",
+"Assessing the Generalization of Graph Neural Networks for Fault Location Across Increasing Distributed Penetration Levels",
+"Burak Karabulut (Ghent University, Belgium & VITO, Belgium); Carlo Manna (Vito, Belgium); Chris Develder (Ghent University, Belgium); Ola Arowolo and Jochen Cremer (TU Delft, The Netherlands)"
+],
+[
+"1571287355",
+"Physics-Informed Continual Learning of Inverse Problems in Power System Applications",
+"Longyun Liao (McMaster University, Canada); Jhelum Chakravorty (Hitachi Energy, Canada); Nicolo Ripamonti (Hitachi Energy, Switzerland); Nandinee Haq (Hitachi Energy, Canada)"
+],
+[
+"1571289394",
+"Digital Assistant for Smart Grid Cyber-Physical Threat Analysis and Reasoning",
+"Garrett Butler (Contractor, USA); Shradha Shrestha, Mohammed Mustafa Hussain and Anurag. K Srivastava (West Virginia University, USA)"
+]
+]
+}
+],
+"gk": "Joint 2",
+"glance": "Grid Analytics and Security · Inference and Detection"
+},
+{
+"kind": "cps",
+"label": "Cyber-Physical Security & Privacy · Session 4",
+"room": "Corps",
+"title": "Communications Security",
+"chair": "Chair: Mostafa Mohammadpourfard (Texas Tech University)",
+"meta": "6 papers",
+"groups": [
+{
+"title": "Communications Security",
+"papers": [
+[
+"1571277279",
+"Practical Modbus/TCP Attack Demonstration on Smart PV Systems: Sustained Command Injection and Denial-of-Service on Commercial Inverter Hardware",
+"Adnan Kujovic (Technische Hochschule Mittelhessen, Germany); Rahamatullah Khondoker (THM University of Applied Sciences, Germany)"
+],
+[
+"1571286635",
+"Disrupting IEEE 2030.5 Standard Distributed Energy Resources (DER) Networks: Head-of-Line Blocking",
+"Hee-Yong Kwon, Aasritha Kareti, Kyoung-Tak Kim, BoHyun Ahn, Alve Akash and Taesic Kim (University of Missouri, USA)"
+],
+[
+"1571278670",
+"PQ-OTSec: A Post-Quantum Secure Key Exchange Framework for Operational Technology Protocols",
+"Nasir Bala Muhammad and Abubakar Sadiq Sani (University of Greenwich, United Kingdom (Great Britain)); Dong Yuan (The University of Sydney, Australia); Georgia Sakellari and George Loukas (University of Greenwich, United Kingdom (Great Britain))"
+],
+[
+"1571281270",
+"A backwards compatible integrity channel for IEEE c37.118",
+"Antoine Lemay (Hitachi Energy Research, Canada); John H Castellanos (Hitachi Energy Research, Germany)"
+],
+[
+"1571289307",
+"Trust-Gated Federated DDoS Detection with Audited Coordination for Smart-Grid Communications",
+"Harsh Kumar (University of Indianapolis, USA); Petro Mushidi Tshakwanda, Henok Berhanu Tsegaye, Ashok Karukutla, Raddad Almaayn, Abid Mohammad Ali and Michael Devetsikiotis (University of New Mexico, USA)"
+],
+[
+"1571289329",
+"ZT-DAC: ML-Driven Dynamic Access Control Policy for Zero Trust in DER Networks",
+"Arun Balasubramanian Chandrasekaran, Damilola Popoola, Souradeep Bhattacharya and Manimaran Govindarasu (Iowa State University, USA)"
+]
+]
+}
+],
+"gk": "Security & Privacy 4",
+"glance": "Communications Security"
+}
+]
+},
+{
+"start": "12:30",
+"end": "14:00",
+"note": null,
+"items": [
+{
+"kind": "special",
+"label": "Lunch & Closing Session",
+"room": "Century I & II",
+"title": "Best Paper Awards, Closing & SmartGridComm 2027 Preview",
+"glance": "Best Paper Awards & Closing"
+}
+]
+},
+{
+"start": "14:00",
+"end": "15:30",
+"note": null,
+"items": [
+{
+"kind": "special",
+"label": "Optional Tours",
+"title": "Walking Tour & Technical Tours",
+"meta": "Walking tour confirmed · RELLIS campus tour to be confirmed"
+}
+]
+}
+]
+}
+];
+
+const KINDS = {keynote:"Keynote", panel:"Panel", workshop:"Workshop", tutorial:"Tutorial",
+  dac:"Data Analytics & Computation", co:"Control & Operation", cn:"Communications & Networking",
+  cps:"Cyber-Physical Security & Privacy", joint:"Joint Session", social:"Networking", special:"Program / Special", break:"Break"};
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const $ = id => document.getElementById(id);
+const t12 = t => { const [h, m] = t.split(":").map(Number); return `${h % 12 || 12}:${String(m).padStart(2,"0")} ${h < 12 ? "AM" : "PM"}`; };
+
+$("eyebrow").textContent = CONF.eyebrow;
+$("conf-name").textContent = CONF.name;
+$("hmeta").innerHTML = CONF.meta.map(m => `<span>${m}</span>`).join("");
+$("foot").textContent = CONF.footer;
+$("legend").innerHTML = Object.entries(KINDS).map(([k,v]) =>
+  `<span class="chip"><i class="dot" style="background:var(--${k})"></i>${v}</span>`).join("");
+
+function papers(groups){
+  if (!groups || !groups.length) return "";
+  const many = groups.length > 1;
+  return `<div class="papers">${groups.map(g => `${many && g.title ? `<h4>${esc(g.title)}</h4>` : ""}${g.papers.map(([id, ti, au]) =>
+    `<div class="pp"><div class="pid">${esc(id)}</div><div class="ptitle">${esc(ti)}</div><div class="pauth">${esc(au)}</div></div>`).join("")}`).join("")}</div>`;
+}
+function card(i){
+  const people = (i.people||[]).map(([r,n,a]) => `<div class="who">${r==="Affiliation" ? `<b>${esc(n)}</b>` : `${esc(r)}: <b>${esc(n)}</b>${a?` (${esc(a)})`:""}`}</div>`).join("");
+  return `<div class="sx k-${i.kind}${i.tbd?" tbd":""}">${i.room?`<span class="room">${esc(i.room)}</span>`:""}`+
+    `<span class="kind">${esc(i.label || KINDS[i.kind])}</span><h3>${esc(i.title)}</h3>${people}`+
+    `${i.chair?`<div class="chair">${esc(i.chair)}</div>`:""}${i.meta?`<div class="meta">${esc(i.meta)}</div>`:""}${papers(i.groups)}</div>`;
+}
+function gItem(i){
+  const k = i.gk || i.label || KINDS[i.kind];
+  return `<div class="gk">${esc(k)}${i.room && i.kind!=="break" && !/Pre-Function/.test(i.room) ? ` · ${esc(i.room)}` : ""}</div><div class="gh">${esc(i.glance || i.title)}</div>`;
+}
+
+let views = "", tabs = "";
+DAYS.forEach((d, n) => {
+  const id = "day" + (n+1);
+  tabs += `<button role="tab" id="t-${id}" aria-controls="${id}" data-v="${id}">${esc(d.tab)}<small>${esc(d.short)}</small></button>`;
+  views += `<section class="view" role="tabpanel" id="${id}" aria-labelledby="t-${id}" hidden>
+    <div class="dhead"><h2>${esc(d.title)}</h2><p>${esc(d.sub)}</p></div>
+    ${d.slots.map(s => `<div class="slot"><div class="time">${t12(s.start)}<small>to ${t12(s.end)}${s.note?` · ${esc(s.note)}`:""}</small></div>
+      <div class="ss${s.items.length===1?" one":""}">${s.items.map(card).join("")}</div></div>`).join("")}</section>`;
+});
+const gDays = CONF.glanceDays.map(n => DAYS[n]).filter(Boolean);
+tabs += `<button role="tab" class="glance" id="t-glance" aria-controls="glance" data-v="glance">▤ At-a-Glance<small>presentation days</small></button>`;
+views += `<section class="view" role="tabpanel" id="glance" aria-labelledby="t-glance" hidden>
+  <div class="dhead"><h2>Program at a Glance</h2><p>${esc(CONF.glanceNote)}</p></div>
+  <div class="ggrid" style="--cols:${gDays.length}">${gDays.map(d => `<div class="gcol"><h3>${esc(d.tab)}<small>${esc(d.short)}</small></h3>
+    ${d.slots.map(s => s.items.length > 1
+      ? `<div class="gi par"><div class="gt">${t12(s.start)}–${t12(s.end)}</div>${s.items.map(i => `<div class="k-${i.kind}">${gItem(i)}</div>`).join("")}</div>`
+      : `<div class="gi k-${s.items[0].kind}"><div class="gt">${t12(s.start)}</div>${gItem(s.items[0])}</div>`).join("")}
+  </div>`).join("")}</div></section>`;
+$("tabs").innerHTML = tabs;
+$("views").innerHTML = views;
+
+function show(v){
+  document.querySelectorAll("nav.days button").forEach(b => b.setAttribute("aria-selected", b.dataset.v === v));
+  document.querySelectorAll(".view").forEach(p => p.hidden = p.id !== v);
+  try { localStorage.setItem("program-view", v); } catch(e){}
+}
+$("tabs").addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b) return;
+  show(b.dataset.v);
+  const nav = $("tabs"); if (nav.getBoundingClientRect().top <= 1) nav.scrollIntoView();
+});
+const isView = v => !!v && !!document.querySelector(`.view[id="${CSS.escape(v)}"]`);
+let start = location.hash.slice(1);
+if (!isView(start)) { try { start = localStorage.getItem("program-view"); } catch(e){ start = null; } }
+show(isView(start) ? start : "day1");
+</script>
+
+</body>
+</html>
