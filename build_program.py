@@ -88,7 +88,7 @@ def paper_session(key, room=None):
     else:
         label = f"{s['long']} · Session {s['num']}"
         title = s["groups"][0]["title"]
-    return {"kind": s["kind"], "label": label, "room": room or s["room"], "title": title,
+    return {"kind": s["kind"], "label": label, "room": room or ROOM_NAMES.get(s["room"], s["room"]), "title": title,
             "chair": ("Chair: " + CHAIRS[key]) if key in CHAIRS else "Chair: to be announced",
             "meta": f"{n} papers", "groups": s["groups"],
             "gk": f"{s['short']} {s['num']}" if s["kind"] != "joint" else f"Joint {s['num']}",
@@ -97,7 +97,8 @@ def paper_session(key, room=None):
 def ws_groups(name):
     return sessions[name]["groups"]
 
-C, T, R, K = "Century I & II", "Traditions", "Ross", "Corps"
+C, T, R, K = "Century I & II", "Laurel", "Ross", "Corps"
+ROOM_NAMES = {"Traditions": "Laurel"}  # spreadsheet name -> name used on the website
 REG = "Pre-Function I & II"
 def brk(title, room=None): return {"kind": "break", "title": title, **({"room": room} if room else {})}
 def slot(t, items, note=None):
@@ -120,10 +121,9 @@ DAYS = [
     {"kind": "tutorial", "label": "Tutorial 2 · Part 2 of 2", "room": T, "title": "Agentic AI for Active Distribution Networks"},
     {"kind": "tutorial", "label": "Tutorial 3 · Part 2 of 2", "room": R, "title": "LLM-Powered Agentic AI"},
     {"kind": "tutorial", "label": "Tutorial 1 · Part 2 of 2", "room": K, "title": "Quantum Secure 6G"}]),
-  slot("12:30 – 13:30", [brk("Lunch, Networking & Industry Exhibits", C)]),
+  slot("12:30 – 13:30", [brk("Lunch & Networking", C)]),
   slot("13:30 – 15:30", [
-    {"kind": "workshop", "label": "Workshop 1 · Part 3 of 4", "room": C, "title": "Cybersecurity, AI, and Threat Detection",
-     "meta": f"{W1} · Includes Workshop 2, Agentic Energy Systems in Smart Grids (merged)",
+    {"kind": "workshop", "label": "Workshop 1 · Part 3 of 4", "room": C, "title": "Cybersecurity, AI, and Threat Detection", "meta": W1,
      "groups": ws_groups("Workshop 1 - Cyber-Physical Power System Resilience PM 1")},
     {"kind": "workshop", "label": "Workshop 3 · Part 1 of 2", "room": K, "title": "Digital Twin for Smart Grid", "meta": "Keynote / panel"}], "afternoon"),
   slot("15:30 – 16:00", [brk("Afternoon Coffee Break")]),
@@ -132,7 +132,7 @@ DAYS = [
      "meta": W1, "groups": ws_groups("Workshop 1 - Cyber-Physical Power System Resilience PM 2")},
     {"kind": "workshop", "label": "Workshop 3 · Part 2 of 2", "room": K, "title": "Digital Twins", "meta": "Digital Twin for Smart Grid",
      "groups": ws_groups("Workshop 3 - Digital Twin for Smart Grid PM 2")}]),
-  slot("18:00 – 20:00", [{"kind": "social", "label": "Networking", "title": "Welcome Reception", "meta": "Location to be announced", "tbd": True}]),
+  slot("18:00 – 20:00", [{"kind": "social", "label": "Networking", "room": "Block T Bar & Grill", "title": "Welcome Reception", "meta": "Texas A&M Hotel & Conference Center"}]),
  ]},
  {"tab": "Day 2", "short": "Tue · Oct 27", "title": "Day 2 — Tuesday, October 27",
   "sub": "Opening, keynotes & parallel paper sessions · Gala dinner 7:00 PM", "slots": [
@@ -140,26 +140,30 @@ DAYS = [
   slot("08:45 – 09:00", [{"kind": "special", "label": "Welcome", "room": C, "title": "Welcome & Opening Remarks",
      "people": [["Speakers", "Dr. Davis & Dr. Narasimha Reddy", "Texas A&M University"]]}]),
   slot("09:00 – 10:00", [{"kind": "keynote", "label": "Keynote I · Opening Keynote", "room": C, "title": "Dr. Vince Poor",
-     "people": [["Affiliation", "Princeton University", ""]], "meta": "Talk title to be announced", "gk": "Keynote I", "glance": "Dr. Vince Poor, Princeton University"}]),
-  slot("10:00 – 10:15", [brk("Coffee Break & Poster Session I")]),
+     "people": [["Affiliation", "Princeton University", ""]], "talk": "Some Approaches to Power Grid Resilience", "gk": "Keynote I", "glance": "Dr. Vince Poor, Princeton University"}]),
+  slot("10:00 – 10:15", [brk("Coffee Break")]),
   slot("10:15 – 12:15", [paper_session("DAC 1"), paper_session("CO 1"), paper_session("CN 1"), paper_session("CPS 1")], "parallel"),
   slot("12:15 – 13:30", [brk("Lunch", C)]),
   slot("13:30 – 14:30", [{"kind": "keynote", "label": "Keynote II · Afternoon Keynote", "room": C, "title": "Dr. Tom Overbye",
-     "people": [["Affiliation", "Texas A&M University", ""]], "meta": "Talk title to be announced", "gk": "Keynote II", "glance": "Dr. Tom Overbye, Texas A&M University"}]),
+     "people": [["Affiliation", "Texas A&M University", ""]], "talk": "Talk title to be announced", "gk": "Keynote II", "glance": "Dr. Tom Overbye, Texas A&M University"}]),
   slot("14:30 – 14:45", [brk("Afternoon Coffee Break")]),
   slot("14:45 – 17:15", [paper_session("DAC 2"), paper_session("CO 2"), paper_session("Joint 1", R), paper_session("CPS 2")], "parallel"),
-  slot("19:00 – 22:00", [{"kind": "social", "label": "Networking", "title": "Conference Prefunction & Gala Dinner", "meta": "Location to be announced", "tbd": True, "glance": "Gala Dinner"}]),
+  slot("19:00 – 22:00", [{"kind": "social", "label": "Networking", "room": C, "title": "Gala Dinner", "meta": "Century I & II ballroom"}]),
  ]},
  {"tab": "Day 3", "short": "Wed · Oct 28", "title": "Day 3 — Wednesday, October 28",
   "sub": "Keynote, industry panels & parallel paper sessions", "slots": [
   slot("08:30 – 16:00", [{"kind": "special", "label": "Registration", "room": REG, "title": "Registration Desk Open"}], "all day"),
   slot("08:45 – 09:00", [{"kind": "special", "label": "Welcome", "room": C, "title": "Day 3 Welcome", "people": [["Speaker", "Dr. Arum Han", ""]]}]),
-  slot("09:00 – 10:00", [{"kind": "keynote", "label": "Keynote III · Technical Keynote", "room": C, "title": "Woody Rickerson",
-     "people": [["Affiliation", "ERCOT", ""]], "meta": "Talk title to be announced", "gk": "Keynote III", "glance": "Woody Rickerson, ERCOT"}]),
-  slot("10:00 – 10:15", [brk("Coffee Break & Poster Session II")]),
+  slot("09:00 – 10:00", [{"kind": "keynote", "label": "Keynote III · Technical Keynote", "room": C, "title": "Karen Butler-Purry",
+     "people": [["Affiliation", "Texas A&M University", ""]], "talk": "Talk title to be announced", "gk": "Keynote III", "glance": "Karen Butler-Purry, Texas A&M University"}]),
+  slot("10:00 – 10:15", [brk("Coffee Break")]),
   slot("10:15 – 12:15", [{"kind": "panel", "label": "Panel 1 · Organized by OPAL-RT", "room": C,
      "title": "Understanding the Role of Hardware-in-the-Loop Testing in Supporting Reliable Data Center Interconnections and Grid Operations",
-     "meta": "Panelists to be announced", "glance": "Hardware-in-the-loop testing for data center interconnections"}]),
+     "people": [["Moderator", "Zerui Dong", "OPAL-RT Corporation"]],
+     "speakers": [["Ashish Upreti", "Google", "Data Center Owner's perspectives on model validation and the use of HIL testing tools"],
+                  ["Zerui Dong", "OPAL-RT Corporation", "Derisking Data Center Design, Testing, and Grid Integration through High-Fidelity Modeling and Real-Time Simulations"],
+                  ["Billy Yancey", "Electric Power Engineers", "Practical challenges and regulatory gaps in model validation of data centers"]],
+     "glance": "Hardware-in-the-loop testing for data center interconnections"}]),
   slot("12:15 – 13:30", [brk("Networking Lunch", C)]),
   slot("13:30 – 14:30", [{"kind": "panel", "label": "Panel 2 · Industry Keynote & Roundtable", "room": C, "title": "G3-Alliance Panel",
      "meta": "Fireside-chat format · Panelists to be announced"}]),
@@ -171,13 +175,13 @@ DAYS = [
   slot("08:30 – 12:00", [{"kind": "special", "label": "Registration", "room": REG, "title": "Registration Desk Open (morning only)"}], "morning"),
   slot("08:45 – 09:00", [{"kind": "special", "label": "Welcome", "room": C, "title": "Day 4 Welcome"}]),
   slot("09:00 – 10:00", [{"kind": "keynote", "label": "Keynote IV · Morning Keynote", "room": C, "title": "Dr. Veronica Adetola",
-     "people": [["Affiliation", "Pacific Northwest National Laboratory (PNNL)", ""]], "meta": "Talk title to be announced", "gk": "Keynote IV", "glance": "Dr. Veronica Adetola, PNNL"}]),
+     "people": [["Affiliation", "Pacific Northwest National Laboratory (PNNL)", ""]],
+     "talk": "Advancing Stability and Resilience in Power and Energy Systems: AI-Enabled Control and Co-Design", "gk": "Keynote IV", "glance": "Dr. Veronica Adetola, PNNL"}]),
   slot("10:00 – 10:15", [brk("Morning Coffee Break")]),
   slot("10:15 – 12:30", [paper_session("DAC 4"), paper_session("CO 5"), paper_session("Joint 2"), paper_session("CPS 4")], "parallel"),
   slot("12:30 – 14:00", [{"kind": "special", "label": "Lunch & Closing Session", "room": C,
      "title": "Best Paper Awards, Closing & SmartGridComm 2027 Preview", "glance": "Best Paper Awards & Closing"}]),
-  slot("14:00 – 15:30", [{"kind": "special", "label": "Optional Tours", "title": "Walking Tour & Technical Tours",
-     "meta": "Walking tour confirmed · RELLIS campus tour to be confirmed"}]),
+  slot("14:00 – 15:30", [{"kind": "special", "label": "Optional Tours", "title": "Walking Tour & Technical Tours"}]),
  ]},
 ]
 

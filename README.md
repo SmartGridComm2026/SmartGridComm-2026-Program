@@ -33,7 +33,7 @@ With no argument, the script looks for the spreadsheet in the parent folder.
 |---|---|
 | Paper sessions: session titles, paper IDs, titles, authors, rooms | Spreadsheet tabs *Web Version Main Program-Sessio* and *Web Version Workshop-Only Sessi* |
 | Session chairs | `CHAIRS` in `build_program.py` (copied from the *Session-Paper Map* tab) |
-| Keynotes, panels, welcomes, breaks, receptions, times | `DAYS` in `build_program.py` (from the *Web Version Detailed Program* tab) |
+| Keynotes, panels, welcomes, breaks, receptions, times | `DAYS` in `build_program.py`, kept in sync with the live website program (last synced 2026-10-05) |
 | Header, dates, footer text | `CONF` in `template.html` |
 
 ## Open questions for reviewers
@@ -44,7 +44,7 @@ choice shown in **bold**.
 1. **Joint Paper Session 1** (Communications & Networking + Power Line Communications) is dated
    Thursday 10:15 in both session tabs, which would double-book Ross. The overview tab puts it on
    **Tuesday 14:45 in Ross**.
-2. The second breakout room is "Laurel (CL/24-26)" in the overview tab header and **"Traditions"** everywhere else.
+2. ~~Laurel vs. Traditions~~ Resolved: the website uses **Laurel**. `ROOM_NAMES` in `build_program.py` renames the spreadsheet's "Traditions".
 3. Day 3 welcome speaker is listed as **"Dr. Arum Han"** and as "Dr. Hahn".
 4. Workshop 1's first paper session is timed 09:00–12:30 but labeled "PM 1". The page follows the
    **AM 1 = keynotes, AM 2 = panel, PM 1 / PM 2 = paper sessions** labels.
@@ -53,5 +53,4 @@ choice shown in **bold**.
 
 ### Still to be announced
 
-Keynote talk titles, panelists for both panels, reception and gala dinner locations,
-RELLIS tour, and chairs for seven sessions (Data Analytics 4; Control & Operation 1–5; Joint 2).
+Talk titles for Keynotes II and III, Panel 2 (G3-Alliance) panelists, and chairs for seven sessions (Data Analytics 4; Control & Operation 1–5; Joint 2).

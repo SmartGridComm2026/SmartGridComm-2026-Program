@@ -73,6 +73,9 @@ nav.days button[aria-selected="true"] small{color:rgba(255,255,255,.85)}
 .ptitle{font-size:.92rem;font-weight:600;line-height:1.35}
 .pauth{font-size:.84rem;color:var(--muted)}
 .chair{font-size:.9rem;color:var(--muted);margin:4px 0 2px}
+.sx .talk{font-size:.95rem;font-style:italic;margin-top:4px}
+.intro{padding:0 20px 14px;color:var(--muted);font-size:.95rem;max-width:80ch;display:grid;gap:4px}
+.intro a{color:var(--brand)}
 
 .ggrid{display:grid;grid-template-columns:repeat(var(--cols,3),minmax(0,1fr));gap:14px}
 .gcol{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
@@ -107,12 +110,12 @@ nav.days button[aria-selected="true"] small{color:rgba(255,255,255,.85)}
 
 <div class="program">
   <header class="hero">
-    <span class="draft">Draft · from planning sheet</span>
     <div class="eyebrow" id="eyebrow"></div>
     <h1 id="conf-name"></h1>
     <div class="hmeta" id="hmeta"></div>
   </header>
   <div class="legend" id="legend"></div>
+  <div class="intro" id="intro"></div>
   <nav class="days" role="tablist" id="tabs"></nav>
   <main id="views"></main>
   <footer id="foot"></footer>
@@ -123,6 +126,8 @@ const CONF = {
   eyebrow: "IEEE International Conference on Communications, Control, and Computing Technologies for Smart Grids",
   name: "IEEE SmartGridComm 2026",
   meta: ["📅 <strong>October 26–29, 2026</strong>", "📍 <strong>College Station, Texas</strong>", "🎤 Keynotes · Panels · Technical Papers · Workshops · Tutorials"],
+  intro: ['Day 1 features <a href="https://sgc2026.ieee-smartgridcomm.org/workshops">workshops</a> and <a href="https://sgc2026.ieee-smartgridcomm.org/tutorials">tutorials</a>, while Days 2–4 are technical paper sessions, keynotes, and panels.',
+          "Workshops and tutorials are included in the registration, as are the banquet and all coffee and lunch breaks."],
   glanceDays: [1, 2, 3],
   glanceNote: "Presentation days (Days 2–4) · October 27–29, 2026 · Day 1 = workshops & tutorials (see Day 1 tab)",
   footer: "All times are Central Time. Numbers above paper titles are paper IDs. Draft program, subject to change."
@@ -164,7 +169,7 @@ const DAYS = [
 {
 "kind": "tutorial",
 "label": "Tutorial 2 · Part 1 of 2",
-"room": "Traditions",
+"room": "Laurel",
 "title": "Agentic AI for Active Distribution Networks"
 },
 {
@@ -207,7 +212,7 @@ const DAYS = [
 {
 "kind": "tutorial",
 "label": "Tutorial 2 · Part 2 of 2",
-"room": "Traditions",
+"room": "Laurel",
 "title": "Agentic AI for Active Distribution Networks"
 },
 {
@@ -231,7 +236,7 @@ const DAYS = [
 "items": [
 {
 "kind": "break",
-"title": "Lunch, Networking & Industry Exhibits",
+"title": "Lunch & Networking",
 "room": "Century I & II"
 }
 ]
@@ -246,7 +251,7 @@ const DAYS = [
 "label": "Workshop 1 · Part 3 of 4",
 "room": "Century I & II",
 "title": "Cybersecurity, AI, and Threat Detection",
-"meta": "Cyber-Physical Power System Resilience · Includes Workshop 2, Agentic Energy Systems in Smart Grids (merged)",
+"meta": "Cyber-Physical Power System Resilience",
 "groups": [
 {
 "title": "Cybersecurity, AI, and Threat Detection",
@@ -428,9 +433,9 @@ const DAYS = [
 {
 "kind": "social",
 "label": "Networking",
+"room": "Block T Bar & Grill",
 "title": "Welcome Reception",
-"meta": "Location to be announced",
-"tbd": true
+"meta": "Texas A&M Hotel & Conference Center"
 }
 ]
 }
@@ -492,7 +497,7 @@ const DAYS = [
 ""
 ]
 ],
-"meta": "Talk title to be announced",
+"talk": "Some Approaches to Power Grid Resilience",
 "gk": "Keynote I",
 "glance": "Dr. Vince Poor, Princeton University"
 }
@@ -505,7 +510,7 @@ const DAYS = [
 "items": [
 {
 "kind": "break",
-"title": "Coffee Break & Poster Session I"
+"title": "Coffee Break"
 }
 ]
 },
@@ -559,7 +564,7 @@ const DAYS = [
 {
 "kind": "co",
 "label": "Control & Operation · Session 1",
-"room": "Traditions",
+"room": "Laurel",
 "title": "Distributed Resources",
 "chair": "Chair: to be announced",
 "meta": "5 papers",
@@ -713,7 +718,7 @@ const DAYS = [
 ""
 ]
 ],
-"meta": "Talk title to be announced",
+"talk": "Talk title to be announced",
 "gk": "Keynote II",
 "glance": "Dr. Tom Overbye, Texas A&M University"
 }
@@ -785,7 +790,7 @@ const DAYS = [
 {
 "kind": "co",
 "label": "Control & Operation · Session 2",
-"room": "Traditions",
+"room": "Laurel",
 "title": "Grid Control Mechanisms",
 "chair": "Chair: to be announced",
 "meta": "6 papers",
@@ -938,10 +943,9 @@ const DAYS = [
 {
 "kind": "social",
 "label": "Networking",
-"title": "Conference Prefunction & Gala Dinner",
-"meta": "Location to be announced",
-"tbd": true,
-"glance": "Gala Dinner"
+"room": "Century I & II",
+"title": "Gala Dinner",
+"meta": "Century I & II ballroom"
 }
 ]
 }
@@ -995,17 +999,17 @@ const DAYS = [
 "kind": "keynote",
 "label": "Keynote III · Technical Keynote",
 "room": "Century I & II",
-"title": "Woody Rickerson",
+"title": "Karen Butler-Purry",
 "people": [
 [
 "Affiliation",
-"ERCOT",
+"Texas A&M University",
 ""
 ]
 ],
-"meta": "Talk title to be announced",
+"talk": "Talk title to be announced",
 "gk": "Keynote III",
-"glance": "Woody Rickerson, ERCOT"
+"glance": "Karen Butler-Purry, Texas A&M University"
 }
 ]
 },
@@ -1016,7 +1020,7 @@ const DAYS = [
 "items": [
 {
 "kind": "break",
-"title": "Coffee Break & Poster Session II"
+"title": "Coffee Break"
 }
 ]
 },
@@ -1030,7 +1034,30 @@ const DAYS = [
 "label": "Panel 1 · Organized by OPAL-RT",
 "room": "Century I & II",
 "title": "Understanding the Role of Hardware-in-the-Loop Testing in Supporting Reliable Data Center Interconnections and Grid Operations",
-"meta": "Panelists to be announced",
+"people": [
+[
+"Moderator",
+"Zerui Dong",
+"OPAL-RT Corporation"
+]
+],
+"speakers": [
+[
+"Ashish Upreti",
+"Google",
+"Data Center Owner's perspectives on model validation and the use of HIL testing tools"
+],
+[
+"Zerui Dong",
+"OPAL-RT Corporation",
+"Derisking Data Center Design, Testing, and Grid Integration through High-Fidelity Modeling and Real-Time Simulations"
+],
+[
+"Billy Yancey",
+"Electric Power Engineers",
+"Practical challenges and regulatory gaps in model validation of data centers"
+]
+],
 "glance": "Hardware-in-the-loop testing for data center interconnections"
 }
 ]
@@ -1127,7 +1154,7 @@ const DAYS = [
 {
 "kind": "co",
 "label": "Control & Operation · Session 3",
-"room": "Traditions",
+"room": "Laurel",
 "title": "Data Centers and Load Management",
 "chair": "Chair: to be announced",
 "meta": "6 papers",
@@ -1318,7 +1345,7 @@ const DAYS = [
 ""
 ]
 ],
-"meta": "Talk title to be announced",
+"talk": "Advancing Stability and Resilience in Power and Energy Systems: AI-Enabled Control and Co-Design",
 "gk": "Keynote IV",
 "glance": "Dr. Veronica Adetola, PNNL"
 }
@@ -1385,7 +1412,7 @@ const DAYS = [
 {
 "kind": "co",
 "label": "Control & Operation · Session 5",
-"room": "Traditions",
+"room": "Laurel",
 "title": "Optimization and Power Flow",
 "chair": "Chair: to be announced",
 "meta": "6 papers",
@@ -1547,8 +1574,7 @@ const DAYS = [
 {
 "kind": "special",
 "label": "Optional Tours",
-"title": "Walking Tour & Technical Tours",
-"meta": "Walking tour confirmed · RELLIS campus tour to be confirmed"
+"title": "Walking Tour & Technical Tours"
 }
 ]
 }
@@ -1567,6 +1593,7 @@ $("eyebrow").textContent = CONF.eyebrow;
 $("conf-name").textContent = CONF.name;
 $("hmeta").innerHTML = CONF.meta.map(m => `<span>${m}</span>`).join("");
 $("foot").textContent = CONF.footer;
+$("intro").innerHTML = CONF.intro.map(p => `<p>${p}</p>`).join("");  // intro allows links
 $("legend").innerHTML = Object.entries(KINDS).map(([k,v]) =>
   `<span class="chip"><i class="dot" style="background:var(--${k})"></i>${v}</span>`).join("");
 
@@ -1576,11 +1603,17 @@ function papers(groups){
   return `<div class="papers">${groups.map(g => `${many && g.title ? `<h4>${esc(g.title)}</h4>` : ""}${g.papers.map(([id, ti, au]) =>
     `<div class="pp"><div class="pid">${esc(id)}</div><div class="ptitle">${esc(ti)}</div><div class="pauth">${esc(au)}</div></div>`).join("")}`).join("")}</div>`;
 }
+function speakers(list){
+  if (!list || !list.length) return "";
+  return `<div class="papers"><h4>Speakers</h4>${list.map(([n, a, t]) =>
+    `<div class="pp"><div class="ptitle">${esc(n)}, <span class="pauth">${esc(a)}</span></div><div class="pauth"><em>${esc(t)}</em></div></div>`).join("")}</div>`;
+}
 function card(i){
   const people = (i.people||[]).map(([r,n,a]) => `<div class="who">${r==="Affiliation" ? `<b>${esc(n)}</b>` : `${esc(r)}: <b>${esc(n)}</b>${a?` (${esc(a)})`:""}`}</div>`).join("");
   return `<div class="sx k-${i.kind}${i.tbd?" tbd":""}">${i.room?`<span class="room">${esc(i.room)}</span>`:""}`+
     `<span class="kind">${esc(i.label || KINDS[i.kind])}</span><h3>${esc(i.title)}</h3>${people}`+
-    `${i.chair?`<div class="chair">${esc(i.chair)}</div>`:""}${i.meta?`<div class="meta">${esc(i.meta)}</div>`:""}${papers(i.groups)}</div>`;
+    `${i.talk?`<div class="talk">${esc(i.talk)}</div>`:""}`+
+    `${i.chair?`<div class="chair">${esc(i.chair)}</div>`:""}${i.meta?`<div class="meta">${esc(i.meta)}</div>`:""}${speakers(i.speakers)}${papers(i.groups)}</div>`;
 }
 function gItem(i){
   const k = i.gk || i.label || KINDS[i.kind];
