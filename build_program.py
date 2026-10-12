@@ -106,11 +106,18 @@ C, T, R, K = "Century I & II", "Laurel", "Ross", "Corps"
 ROOM_NAMES = {"Traditions": "Laurel"}  # spreadsheet name -> name used on the website
 REG = "Pre-Function I & II"
 def brk(title, room=None): return {"kind": "break", "title": title, **({"room": room} if room else {})}
+NUMBERED = {"workshop": 0, "tutorial": 1}  # listed in this order, then by number
+def slot_order(item):
+    if item["kind"] not in NUMBERED:
+        return (-1, 0)
+    n = re.search(r"\d+", item.get("label", ""))
+    return (NUMBERED[item["kind"]], int(n.group()) if n else 0)
 def slot(t, items, note=None):
     a, b = [x.strip() for x in re.split(r"[–-]", t)]
-    return {"start": a, "end": b, "note": note, "items": items}
+    return {"start": a, "end": b, "note": note, "items": sorted(items, key=slot_order)}
 
 W1 = "Cyber-Physical Power System Resilience"
+W2 = "Agentic Energy Systems in Smart Grids: Theories, Technologies, and Applications"
 DAYS = [
  {"tab": "Day 1", "short": "Mon · Oct 26", "title": "Day 1 — Monday, October 26",
   "sub": "Workshops & tutorials · Registration opens 8:00 AM · Welcome reception 6:00 PM", "slots": [
@@ -130,11 +137,13 @@ DAYS = [
   slot("13:30 – 15:30", [
     {"kind": "workshop", "label": "Workshop 1 · Part 3 of 4", "room": C, "title": "Cybersecurity, AI, and Threat Detection", "meta": W1,
      "groups": ws_groups("Workshop 1 - Cyber-Physical Power System Resilience PM 1")},
+    {"kind": "workshop", "label": "Workshop 2 · Part 1 of 2", "room": T, "title": W2, "meta": "Merged with Workshop 1"},
     {"kind": "workshop", "label": "Workshop 3 · Part 1 of 2", "room": K, "title": "Digital Twin for Smart Grid", "meta": "Keynote / panel"}], "afternoon"),
   slot("15:30 – 16:00", [brk("Afternoon Coffee Break")]),
   slot("16:00 – 17:30", [
     {"kind": "workshop", "label": "Workshop 1 · Part 4 of 4", "room": C, "title": "Power System Resilience and Recovery",
      "meta": W1, "groups": ws_groups("Workshop 1 - Cyber-Physical Power System Resilience PM 2")},
+    {"kind": "workshop", "label": "Workshop 2 · Part 2 of 2", "room": T, "title": W2, "meta": "Merged with Workshop 1"},
     {"kind": "workshop", "label": "Workshop 3 · Part 2 of 2", "room": K, "title": "Digital Twins", "meta": "Digital Twin for Smart Grid",
      "groups": ws_groups("Workshop 3 - Digital Twin for Smart Grid PM 2")}]),
   slot("18:00 – 20:00", [{"kind": "social", "label": "Networking", "room": "Block T Bar & Grill", "title": "Welcome Reception", "meta": "Texas A&M Hotel & Conference Center"}]),
