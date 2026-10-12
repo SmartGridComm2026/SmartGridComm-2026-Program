@@ -106,45 +106,46 @@ C, T, R, K = "Century I & II", "Laurel", "Ross", "Corps"
 ROOM_NAMES = {"Traditions": "Laurel"}  # spreadsheet name -> name used on the website
 REG = "Pre-Function I & II"
 def brk(title, room=None): return {"kind": "break", "title": title, **({"room": room} if room else {})}
-NUMBERED = {"workshop": 0, "tutorial": 1}  # listed in this order, then by number
 def slot_order(item):
-    if item["kind"] not in NUMBERED:
-        return (-1, 0)
-    n = re.search(r"\d+", item.get("label", ""))
-    return (NUMBERED[item["kind"]], int(n.group()) if n else 0)
+    """Workshops first (in listed order), then tutorials by number; other items keep their order."""
+    if item["kind"] == "workshop":
+        return (0, 0)
+    if item["kind"] == "tutorial":
+        n = re.search(r"Tutorial (\d+)", item.get("label", ""))
+        return (1, int(n.group(1)) if n else 0)
+    return (-1, 0)
 def slot(t, items, note=None):
     a, b = [x.strip() for x in re.split(r"[–-]", t)]
     return {"start": a, "end": b, "note": note, "items": sorted(items, key=slot_order)}
 
-W1 = "Cyber-Physical Power System Resilience"
+W1 = "Cyber-Physical Power System Resilience: Challenges and Emerging Solutions"
 W2 = "Agentic Energy Systems in Smart Grids: Theories, Technologies, and Applications"
+W3 = "Digital Twin for Smart Grid"
 DAYS = [
  {"tab": "Day 1", "short": "Mon · Oct 26", "title": "Day 1 — Monday, October 26",
   "sub": "Workshops & tutorials · Registration opens 8:00 AM · Welcome reception 6:00 PM", "slots": [
   slot("08:00 – 17:00", [{"kind": "special", "label": "Registration", "room": REG, "title": "Main Registration Desk Open"}], "all day"),
   slot("09:00 – 10:30", [
-    {"kind": "workshop", "label": "Workshop 1 · Part 1 of 4", "room": C, "title": W1, "meta": "Keynotes: two speakers, 30-minute talk + 15-minute Q&A each", "glance": W1},
+    {"kind": "workshop", "label": "Workshop · Part 1 of 4", "room": C, "title": W1, "meta": "Keynotes: two speakers, 30-minute talk + 15-minute Q&A each", "glance": W1},
     {"kind": "tutorial", "label": "Tutorial 2 · Part 1 of 2", "room": T, "title": "Agentic AI for Active Distribution Networks"},
     {"kind": "tutorial", "label": "Tutorial 3 · Part 1 of 2", "room": R, "title": "LLM-Powered Agentic AI"},
     {"kind": "tutorial", "label": "Tutorial 1 · Part 1 of 2", "room": K, "title": "Quantum Secure 6G"}], "morning"),
   slot("10:30 – 11:00", [brk("Morning Coffee & Networking")]),
   slot("11:00 – 12:30", [
-    {"kind": "workshop", "label": "Workshop 1 · Part 2 of 4", "room": C, "title": W1, "meta": "Panel: four speakers, 12-minute talk + 3-minute Q&A each, then a 30-minute discussion"},
+    {"kind": "workshop", "label": "Workshop · Part 2 of 4", "room": C, "title": W1, "meta": "Panel: four speakers, 12-minute talk + 3-minute Q&A each, then a 30-minute discussion"},
     {"kind": "tutorial", "label": "Tutorial 2 · Part 2 of 2", "room": T, "title": "Agentic AI for Active Distribution Networks"},
     {"kind": "tutorial", "label": "Tutorial 3 · Part 2 of 2", "room": R, "title": "LLM-Powered Agentic AI"},
     {"kind": "tutorial", "label": "Tutorial 1 · Part 2 of 2", "room": K, "title": "Quantum Secure 6G"}]),
   slot("12:30 – 13:30", [brk("Lunch & Networking", C)]),
   slot("13:30 – 15:30", [
-    {"kind": "workshop", "label": "Workshop 1 · Part 3 of 4", "room": C, "title": "Cybersecurity, AI, and Threat Detection", "meta": W1,
+    {"kind": "workshop", "label": "Workshop · Part 3 of 4", "room": C, "title": W1, "meta": f"Paper session: Cybersecurity, AI, and Threat Detection · Includes the {W2} workshop",
      "groups": ws_groups("Workshop 1 - Cyber-Physical Power System Resilience PM 1")},
-    {"kind": "workshop", "label": "Workshop 2 · Part 1 of 2", "room": T, "title": W2, "meta": "Merged with Workshop 1"},
-    {"kind": "workshop", "label": "Workshop 3 · Part 1 of 2", "room": K, "title": "Digital Twin for Smart Grid", "meta": "Keynote / panel"}], "afternoon"),
+    {"kind": "workshop", "label": "Workshop · Part 1 of 2", "room": K, "title": W3, "meta": "Keynote / panel"}], "afternoon"),
   slot("15:30 – 16:00", [brk("Afternoon Coffee Break")]),
   slot("16:00 – 17:30", [
-    {"kind": "workshop", "label": "Workshop 1 · Part 4 of 4", "room": C, "title": "Power System Resilience and Recovery",
-     "meta": W1, "groups": ws_groups("Workshop 1 - Cyber-Physical Power System Resilience PM 2")},
-    {"kind": "workshop", "label": "Workshop 2 · Part 2 of 2", "room": T, "title": W2, "meta": "Merged with Workshop 1"},
-    {"kind": "workshop", "label": "Workshop 3 · Part 2 of 2", "room": K, "title": "Digital Twins", "meta": "Digital Twin for Smart Grid",
+    {"kind": "workshop", "label": "Workshop · Part 4 of 4", "room": C, "title": W1,
+     "meta": f"Paper session: Power System Resilience and Recovery · Includes the {W2} workshop", "groups": ws_groups("Workshop 1 - Cyber-Physical Power System Resilience PM 2")},
+    {"kind": "workshop", "label": "Workshop · Part 2 of 2", "room": K, "title": W3, "meta": "Paper session: Digital Twins",
      "groups": ws_groups("Workshop 3 - Digital Twin for Smart Grid PM 2")}]),
   slot("18:00 – 20:00", [{"kind": "social", "label": "Networking", "room": "Block T Bar & Grill", "title": "Welcome Reception", "meta": "Texas A&M Hotel & Conference Center"}]),
  ]},
