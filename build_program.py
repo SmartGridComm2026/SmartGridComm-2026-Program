@@ -27,14 +27,19 @@ TRACKS = {  # session-name prefix -> (kind, long label, short label)
 }
 # Chairs from "Session-Paper Map" (emails and planning notes removed)
 CHAIRS = {
-    "DAC 1": "Ying Zhang (Oklahoma State University)",
+    "DAC 1": "Ying Zhang (Oklahoma State University) · Co-chair: Di Shi",
     "DAC 2": "Md Zahidul Islam (Southern Illinois University)",
     "DAC 3": "Yuzhang Lin (New York University)",
+    "CO 1": "Hao Huang (University of Tennessee Knoxville)",
+    "CO 2": "Dileep Cheerla (GridAxon) · Co-chair: Hao Huang",
+    "CO 4": "Rubel Ahmed (Louisiana Tech)",
+    "CO 5": "Oliver Kosut (Arizona State University)",
     "CN 1": "Ioannis (Yannis) Zografopoulos · Co-chair: Anurag Srivastava",
     "Joint 1": "Daisuke Mashima · Co-chair: Alexandru Ștefanov",
-    "CPS 1": "Daisuke Mashima (Singapore University of Technology and Design)",
-    "CPS 2": "Kevin Jin (University of Arkansas)",
-    "CPS 3": "Taesic Kim (University of Missouri)",
+    "Joint 2": "Eman Hammad (Texas A&M University)",
+    "CPS 1": "Daisuke Mashima (Singapore University of Technology and Design) · Co-chair: Charalambos (Harrys) Konstantinou",
+    "CPS 2": "Kevin Jin (University of Arkansas) · Co-chair: Charalambos (Harrys) Konstantinou",
+    "CPS 3": "Taesic Kim (University of Missouri) · Co-chair: Abubakar Sadiq Sani",
     "CPS 4": "Mostafa Mohammadpourfard (Texas Tech University)",
 }
 CODE = {"dac": "DAC", "co": "CO", "cn": "CN", "cps": "CPS", "joint": "Joint"}
@@ -154,8 +159,8 @@ DAYS = [
   "sub": "Keynote, industry panels & parallel paper sessions", "slots": [
   slot("08:30 – 16:00", [{"kind": "special", "label": "Registration", "room": REG, "title": "Registration Desk Open"}], "all day"),
   slot("08:45 – 09:00", [{"kind": "special", "label": "Welcome", "room": C, "title": "Day 3 Welcome", "people": [["Speaker", "Dr. Arum Han", ""]]}]),
-  slot("09:00 – 10:00", [{"kind": "keynote", "label": "Keynote III · Technical Keynote", "room": C, "title": "Karen Butler-Purry",
-     "people": [["Affiliation", "Texas A&M University", ""]], "talk": "Talk title to be announced", "gk": "Keynote III", "glance": "Karen Butler-Purry, Texas A&M University"}]),
+  slot("09:00 – 10:00", [{"kind": "keynote", "label": "Keynote III · Technical Keynote", "room": C, "title": "Dr. Karen Butler-Purry",
+     "people": [["Affiliation", "Texas A&M University", ""]], "talk": "Talk title to be announced", "gk": "Keynote III", "glance": "Dr. Karen Butler-Purry, Texas A&M University"}]),
   slot("10:00 – 10:15", [brk("Coffee Break")]),
   slot("10:15 – 12:15", [{"kind": "panel", "label": "Panel 1 · Organized by OPAL-RT", "room": C,
      "title": "Understanding the Role of Hardware-in-the-Loop Testing in Supporting Reliable Data Center Interconnections and Grid Operations",
@@ -173,7 +178,7 @@ DAYS = [
  {"tab": "Day 4", "short": "Thu · Oct 29", "title": "Day 4 — Thursday, October 29",
   "sub": "Keynote, final paper sessions, awards & closing · Optional tours 2:00 PM", "slots": [
   slot("08:30 – 12:00", [{"kind": "special", "label": "Registration", "room": REG, "title": "Registration Desk Open (morning only)"}], "morning"),
-  slot("08:45 – 09:00", [{"kind": "special", "label": "Welcome", "room": C, "title": "Day 4 Welcome"}]),
+  slot("08:45 – 09:00", [{"kind": "special", "label": "Welcome", "room": C, "title": "Day 4 Welcome", "people": [["Speaker", "Mayor Pro Tem Wright", ""]]}]),
   slot("09:00 – 10:00", [{"kind": "keynote", "label": "Keynote IV · Morning Keynote", "room": C, "title": "Dr. Veronica Adetola",
      "people": [["Affiliation", "Pacific Northwest National Laboratory (PNNL)", ""]],
      "talk": "Advancing Stability and Resilience in Power and Energy Systems: AI-Enabled Control and Co-Design", "gk": "Keynote IV", "glance": "Dr. Veronica Adetola, PNNL"}]),
