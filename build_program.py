@@ -135,8 +135,11 @@ TUTORIALS = {  # number -> (room, full title, [(speaker, affiliation), ...]) fro
 def tut(n, part):
     room, title, speakers = TUTORIALS[n]
     item = {"kind": "tutorial", "label": f"Tutorial {n} · Part {part} of 2", "room": room, "title": title}
-    if part == 1:
-        item["people"] = [["Speaker", name, aff] for name, aff in speakers]
+    if part == 1:  # speakers are listed per tutorial, not per part, so show the team once
+        item["speakers"] = [[name, aff, ""] for name, aff in speakers]
+        item["speakersLabel"] = "Tutorial speakers"
+    else:
+        item["meta"] = "Continued from Part 1"
     return item
 DAYS = [
  {"tab": "Day 1", "short": "Mon · Oct 26", "title": "Day 1 — Monday, October 26",
@@ -160,7 +163,7 @@ DAYS = [
     {"kind": "workshop", "label": "Workshop · Part 1 of 2", "room": K, "title": W3,
      "people": [["Keynote, 1:30–2:20 PM", "Prof. Mladen Kezunovic", "Texas A&M University"],
                 ["Panel, 2:20–3:30 PM", "From Replica to Operations: Trustworthy Digital Twins for a Secure and Resilient Grid", ""]],
-     "meta": "Panel chairs: Charalambos (Harrys) Konstantinou & Daisuke Mashima · Panelists: Manimaran Govindarasu, Kate Davis, Di Shi, Jonathan Sebastian-Cardenas, Anurag Srivastava"}], "afternoon"),
+     "meta": "Panel chairs: Charalambos (Harrys) Konstantinou & Daisuke Mashima · Panelists: Manimaran Govindarasu, Kate Davis, Di Shi, Jonathan Sebastian-Cardenas, Anurag Srivastava · Moderated discussion with audience Q&A"}], "afternoon"),
   slot("15:30 – 16:00", [brk("Afternoon Coffee Break")]),
   slot("16:00 – 17:30", [
     {"kind": "workshop", "label": "Workshop · Part 4 of 4", "room": C, "title": W1,
@@ -219,7 +222,8 @@ DAYS = [
   slot("10:15 – 12:30", [paper_session("DAC 4"), paper_session("CO 5"), paper_session("Joint 2"), paper_session("CPS 4")], "parallel"),
   slot("12:30 – 14:00", [{"kind": "special", "label": "Lunch & Closing Session", "room": C,
      "title": "Best Paper Awards, Closing & SmartGridComm 2027 Preview", "glance": "Best Paper Awards & Closing"}]),
-  slot("14:00 – 15:30", [{"kind": "special", "label": "Optional Tours", "title": "Walking Tour & Technical Tours"}]),
+  slot("14:00 – 15:30", [{"kind": "special", "label": "Optional Tours", "title": "Walking Tour & Technical Tours",
+     "meta": "Campus walking tour, followed by a technical tour of the Global Cyber Research Institute (GCRI) in the Blocker Building"}]),
  ]},
 ]
 
