@@ -117,12 +117,12 @@ nav.days button[aria-selected="true"] small{color:rgba(255,255,255,.85)}
 const CONF = {
   eyebrow: "IEEE International Conference on Communications, Control, and Computing Technologies for Smart Grids",
   name: "IEEE SmartGridComm 2026",
-  meta: ["📅 <strong>October 26–29, 2026</strong>", "📍 <strong>College Station, Texas</strong>", "🎤 Keynotes · Panels · Technical Papers · Workshops · Tutorials"],
+  meta: ["<strong>October 26–29, 2026</strong>", "<strong>College Station, Texas</strong>", "Keynotes · Panels · Technical Papers · Workshops · Tutorials"],
   intro: ['Day 1 features <a href="https://sgc2026.ieee-smartgridcomm.org/workshops">workshops</a> and <a href="https://sgc2026.ieee-smartgridcomm.org/tutorials">tutorials</a>, while Days 2–4 are technical paper sessions, keynotes, and panels.',
           "Workshops and tutorials are included in the registration, as are the banquet and all coffee and lunch breaks."],
   glanceDays: [1, 2, 3],
   glanceNote: "Presentation days (Days 2–4) · October 27–29, 2026 · Day 1 = workshops & tutorials (see Day 1 tab)",
-  footer: "All times are Central Time. Numbers above paper titles are paper IDs. Draft program, subject to change."
+  footer: "All times are Central Time. Numbers above paper titles are paper IDs. The program is subject to change."
 };
 /* Generated from the planning spreadsheet by build_program.py */
 const DAYS = /*__DAYS__*/[];
@@ -175,7 +175,7 @@ DAYS.forEach((d, n) => {
       <div class="ss${s.items.length===1?" one":""}">${s.items.map(card).join("")}</div></div>`).join("")}</section>`;
 });
 const gDays = CONF.glanceDays.map(n => DAYS[n]).filter(Boolean);
-tabs += `<button role="tab" class="glance" id="t-glance" aria-controls="glance" data-v="glance">▤ At-a-Glance<small>presentation days</small></button>`;
+tabs += `<button role="tab" class="glance" id="t-glance" aria-controls="glance" data-v="glance">At-a-Glance<small>presentation days</small></button>`;
 views += `<section class="view" role="tabpanel" id="glance" aria-labelledby="t-glance" hidden>
   <div class="dhead"><h2>Program at a Glance</h2><p>${esc(CONF.glanceNote)}</p></div>
   <div class="ggrid" style="--cols:${gDays.length}">${gDays.map(d => `<div class="gcol"><h3>${esc(d.tab)}<small>${esc(d.short)}</small></h3>
