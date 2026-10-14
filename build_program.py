@@ -140,7 +140,10 @@ DAYS = [
   slot("13:30 – 15:30", [
     {"kind": "workshop", "label": "Workshop · Part 3 of 4", "room": C, "title": W1, "meta": f"Paper session: Cybersecurity, AI, and Threat Detection · Includes the {W2} workshop",
      "groups": ws_groups("Workshop 1 - Cyber-Physical Power System Resilience PM 1")},
-    {"kind": "workshop", "label": "Workshop · Part 1 of 2", "room": K, "title": W3, "meta": "Keynote / panel"}], "afternoon"),
+    {"kind": "workshop", "label": "Workshop · Part 1 of 2", "room": K, "title": W3,
+     "people": [["Keynote, 1:30–2:20 PM", "Prof. Mladen Kezunovic", "Texas A&M University"],
+                ["Panel, 2:20–3:30 PM", "From Replica to Operations: Trustworthy Digital Twins for a Secure and Resilient Grid", ""]],
+     "meta": "Panel chairs: Charalambos (Harrys) Konstantinou & Daisuke Mashima · Panelists: Manimaran Govindarasu, Kate Davis, Di Shi, Jonathan Sebastian-Cardenas, Anurag Srivastava"}], "afternoon"),
   slot("15:30 – 16:00", [brk("Afternoon Coffee Break")]),
   slot("16:00 – 17:30", [
     {"kind": "workshop", "label": "Workshop · Part 4 of 4", "room": C, "title": W1,
@@ -163,7 +166,7 @@ DAYS = [
      "people": [["Affiliation", "Texas A&M University", ""]], "talk": "Talk title to be announced", "gk": "Keynote II", "glance": "Dr. Tom Overbye, Texas A&M University"}]),
   slot("14:30 – 14:45", [brk("Afternoon Coffee Break")]),
   slot("14:45 – 17:15", [paper_session("DAC 2"), paper_session("CO 2"), paper_session("Joint 1", R), paper_session("CPS 2")], "parallel"),
-  slot("19:00 – 22:00", [{"kind": "social", "label": "Networking", "room": C, "title": "Gala Dinner", "meta": "Century I & II ballroom"}]),
+  slot("19:00 – 22:00", [{"kind": "social", "label": "Networking", "room": C, "title": "Gala Dinner", "meta": "Featuring the Aggie Wranglers"}]),
  ]},
  {"tab": "Day 3", "short": "Wed · Oct 28", "title": "Day 3 — Wednesday, October 28",
   "sub": "Keynote, industry panels & parallel paper sessions", "slots": [
