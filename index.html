@@ -171,69 +171,72 @@ const DAYS = [
 "label": "Tutorial 1 · Part 1 of 2",
 "room": "Corps",
 "title": "Quantum Secure 6G for Smart Grids: PQC and QKD Frameworks and Proof-of-Concept",
-"people": [
+"speakers": [
 [
-"Speaker",
 "Abdullah Aydeger",
-"Florida Institute of Technology"
+"Florida Institute of Technology",
+""
 ],
 [
-"Speaker",
 "Engin Zeydan",
-"Centre Tecnològic de Telecomunicacions de Catalunya (CTTC)"
+"Centre Tecnològic de Telecomunicacions de Catalunya (CTTC)",
+""
 ]
-]
+],
+"speakersLabel": "Tutorial speakers"
 },
 {
 "kind": "tutorial",
 "label": "Tutorial 2 · Part 1 of 2",
 "room": "Laurel",
 "title": "Agentic AI for Grid Operators in Active Distribution Networks within a Multi-Agent Framework",
-"people": [
+"speakers": [
 [
-"Speaker",
 "Alaa Selim",
-"Dartmouth College"
+"Dartmouth College",
+""
 ],
 [
-"Speaker",
 "Mohamad Chehade",
-"The University of Texas at Austin"
+"The University of Texas at Austin",
+""
 ],
 [
-"Speaker",
 "Mahmoud Abdelaal",
-"ABB"
+"ABB",
+""
 ]
-]
+],
+"speakersLabel": "Tutorial speakers"
 },
 {
 "kind": "tutorial",
 "label": "Tutorial 3 · Part 1 of 2",
 "room": "Ross",
 "title": "LLM-Powered Agentic AI Systems for Next-Generation Smart Grids",
-"people": [
+"speakers": [
 [
-"Speaker",
 "Xin Chen",
-"Texas A&M University"
+"Texas A&M University",
+""
 ],
 [
-"Speaker",
 "Thomas Overbye",
-"Texas A&M University"
+"Texas A&M University",
+""
 ],
 [
-"Speaker",
 "Elnaz Kabir",
-"Texas A&M University"
+"Texas A&M University",
+""
 ],
 [
-"Speaker",
 "Tianqiao Zhao",
-"University of Texas at Arlington"
+"University of Texas at Arlington",
+""
 ]
-]
+],
+"speakersLabel": "Tutorial speakers"
 }
 ]
 },
@@ -264,19 +267,22 @@ const DAYS = [
 "kind": "tutorial",
 "label": "Tutorial 1 · Part 2 of 2",
 "room": "Corps",
-"title": "Quantum Secure 6G for Smart Grids: PQC and QKD Frameworks and Proof-of-Concept"
+"title": "Quantum Secure 6G for Smart Grids: PQC and QKD Frameworks and Proof-of-Concept",
+"meta": "Continued from Part 1"
 },
 {
 "kind": "tutorial",
 "label": "Tutorial 2 · Part 2 of 2",
 "room": "Laurel",
-"title": "Agentic AI for Grid Operators in Active Distribution Networks within a Multi-Agent Framework"
+"title": "Agentic AI for Grid Operators in Active Distribution Networks within a Multi-Agent Framework",
+"meta": "Continued from Part 1"
 },
 {
 "kind": "tutorial",
 "label": "Tutorial 3 · Part 2 of 2",
 "room": "Ross",
-"title": "LLM-Powered Agentic AI Systems for Next-Generation Smart Grids"
+"title": "LLM-Powered Agentic AI Systems for Next-Generation Smart Grids",
+"meta": "Continued from Part 1"
 }
 ]
 },
@@ -373,7 +379,7 @@ const DAYS = [
 ""
 ]
 ],
-"meta": "Panel chairs: Charalambos (Harrys) Konstantinou & Daisuke Mashima · Panelists: Manimaran Govindarasu, Kate Davis, Di Shi, Jonathan Sebastian-Cardenas, Anurag Srivastava"
+"meta": "Panelists: Manimaran Govindarasu, Kate Davis, Di Shi, Jonathan Sebastian-Cardenas, Anurag Srivastava · Moderated discussion with audience Q&A"
 }
 ]
 },
@@ -1657,7 +1663,8 @@ const DAYS = [
 {
 "kind": "special",
 "label": "Optional Tours",
-"title": "Walking Tour & Technical Tours"
+"title": "Walking Tour & Technical Tours",
+"meta": "Campus walking tour, followed by a technical tour of the Global Cyber Research Institute (GCRI) in the Blocker Building"
 }
 ]
 }
@@ -1686,17 +1693,17 @@ function papers(groups){
   return `<div class="papers">${groups.map(g => `${many && g.title ? `<h4>${esc(g.title)}</h4>` : ""}${g.papers.map(([id, ti, au]) =>
     `<div class="pp"><div class="pid">${esc(id)}</div><div class="ptitle">${esc(ti)}</div><div class="pauth">${esc(au)}</div></div>`).join("")}`).join("")}</div>`;
 }
-function speakers(list){
+function speakers(list, label){
   if (!list || !list.length) return "";
-  return `<div class="papers"><h4>Speakers</h4>${list.map(([n, a, t]) =>
-    `<div class="pp"><div class="ptitle">${esc(n)}, <span class="pauth">${esc(a)}</span></div><div class="pauth"><em>${esc(t)}</em></div></div>`).join("")}</div>`;
+  return `<div class="papers"><h4>${esc(label || "Speakers")}</h4>${list.map(([n, a, t]) =>
+    `<div class="pp"><div class="ptitle">${esc(n)}, <span class="pauth">${esc(a)}</span></div>${t ? `<div class="pauth"><em>${esc(t)}</em></div>` : ""}</div>`).join("")}</div>`;
 }
 function card(i){
   const people = (i.people||[]).map(([r,n,a]) => `<div class="who">${r==="Affiliation" ? `<b>${esc(n)}</b>` : `${esc(r)}: <b>${esc(n)}</b>${a?` (${esc(a)})`:""}`}</div>`).join("");
   return `<div class="sx k-${i.kind}${i.tbd?" tbd":""}">${i.room?`<span class="room">${esc(i.room)}</span>`:""}`+
     `<span class="kind">${esc(i.label || KINDS[i.kind])}</span><h3>${esc(i.title)}</h3>${people}`+
     `${i.talk?`<div class="talk">${esc(i.talk)}</div>`:""}`+
-    `${i.chair?`<div class="chair">${esc(i.chair)}</div>`:""}${i.meta?`<div class="meta">${esc(i.meta)}</div>`:""}${speakers(i.speakers)}${papers(i.groups)}</div>`;
+    `${i.chair?`<div class="chair">${esc(i.chair)}</div>`:""}${i.meta?`<div class="meta">${esc(i.meta)}</div>`:""}${speakers(i.speakers, i.speakersLabel)}${papers(i.groups)}</div>`;
 }
 function gItem(i){
   const k = i.gk || i.label || KINDS[i.kind];
