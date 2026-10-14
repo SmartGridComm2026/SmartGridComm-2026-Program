@@ -32,7 +32,8 @@ CHAIRS = {
     "DAC 3": "Yuzhang Lin (New York University)",
     "CO 1": "Hao Huang (University of Tennessee Knoxville)",
     "CO 2": "Dileep Cheerla (GridAxon) · Co-chair: Hao Huang",
-    "CO 4": "Rubel Ahmed (Louisiana Tech)",
+    "CO 3": "Xin Chen (Texas A&M University)",
+    "CO 4": "Adam Birchfield (Texas A&M University) · Co-chair: Venkateswara Reddy Motakatla",
     "CO 5": "Oliver Kosut (Arizona State University)",
     "CN 1": "Ioannis (Yannis) Zografopoulos · Co-chair: Anurag Srivastava",
     "Joint 1": "Daisuke Mashima · Co-chair: Alexandru Ștefanov",
@@ -158,7 +159,7 @@ DAYS = [
     tut(1, 2)]),
   slot("12:30 – 13:30", [brk("Lunch & Networking", C)]),
   slot("13:30 – 15:30", [
-    {"kind": "workshop", "label": "Workshop · Part 3 of 4", "room": C, "title": W1, "meta": f"Paper session: Cybersecurity, AI, and Threat Detection (3-minute talks followed by a poster session) · Includes the {W2} workshop",
+    {"kind": "workshop", "label": "Workshop · Part 3 of 4", "room": C, "title": W1, "meta": f"Paper session: Cybersecurity, AI, and Threat Detection (short talks followed by a poster session) · Includes the {W2} workshop",
      "groups": ws_groups("Workshop 1 - Cyber-Physical Power System Resilience PM 1")},
     {"kind": "workshop", "label": "Workshop · Part 1 of 2", "room": K, "title": W3,
      "people": [["Keynote, 1:30–2:20 PM", "Prof. Mladen Kezunovic", "Texas A&M University"],
@@ -167,7 +168,7 @@ DAYS = [
   slot("15:30 – 16:00", [brk("Afternoon Coffee Break")]),
   slot("16:00 – 17:30", [
     {"kind": "workshop", "label": "Workshop · Part 4 of 4", "room": C, "title": W1,
-     "meta": f"Paper session: Power System Resilience and Recovery (3-minute talks followed by a poster session) · Includes the {W2} workshop", "groups": ws_groups("Workshop 1 - Cyber-Physical Power System Resilience PM 2")},
+     "meta": f"Paper session: Power System Resilience and Recovery (short talks followed by a poster session) · Includes the {W2} workshop", "groups": ws_groups("Workshop 1 - Cyber-Physical Power System Resilience PM 2")},
     {"kind": "workshop", "label": "Workshop · Part 2 of 2", "room": K, "title": W3, "meta": "Paper session: Digital Twins (20 minutes per paper, including Q&A)",
      "groups": ws_groups("Workshop 3 - Digital Twin for Smart Grid PM 2")}]),
   slot("18:00 – 20:00", [{"kind": "social", "label": "Networking", "room": "Block T Bar & Grill", "title": "Welcome Reception", "meta": "Texas A&M Hotel & Conference Center"}]),
@@ -176,7 +177,7 @@ DAYS = [
   "sub": "Opening, keynotes & parallel paper sessions · Gala dinner 7:00 PM", "slots": [
   slot("08:00 – 17:00", [{"kind": "special", "label": "Registration", "room": REG, "title": "Registration Desk Open"}], "all day"),
   slot("08:45 – 09:00", [{"kind": "special", "label": "Welcome", "room": C, "title": "Welcome & Opening Remarks",
-     "people": [["Speakers", "Dr. Davis & Dr. Narasimha Reddy", "Texas A&M University"]]}]),
+     "people": [["Speakers", "Dr. Kate Davis & Dr. Narasimha Reddy", "Texas A&M University"]]}]),
   slot("09:00 – 10:00", [{"kind": "keynote", "label": "Keynote I · Opening Keynote", "room": C, "title": "Dr. Vince Poor",
      "people": [["Affiliation", "Princeton University", ""]], "talk": "Some Approaches to Power Grid Resilience", "gk": "Keynote I", "glance": "Dr. Vince Poor, Princeton University"}]),
   slot("10:00 – 10:15", [brk("Coffee Break")]),
