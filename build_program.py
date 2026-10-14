@@ -121,21 +121,38 @@ def slot(t, items, note=None):
 W1 = "Cyber-Physical Power System Resilience: Challenges and Emerging Solutions"
 W2 = "Agentic Energy Systems in Smart Grids: Theories, Technologies, and Applications"
 W3 = "Digital Twin for Smart Grid"
+TUTORIALS = {  # number -> (room, full title, [(speaker, affiliation), ...]) from the website's Tutorials page
+    1: (K, "Quantum Secure 6G for Smart Grids: PQC and QKD Frameworks and Proof-of-Concept",
+        [("Abdullah Aydeger", "Florida Institute of Technology"),
+         ("Engin Zeydan", "Centre Tecnològic de Telecomunicacions de Catalunya (CTTC)")]),
+    2: (T, "Agentic AI for Grid Operators in Active Distribution Networks within a Multi-Agent Framework",
+        [("Alaa Selim", "Dartmouth College"), ("Mohamad Chehade", "The University of Texas at Austin"),
+         ("Mahmoud Abdelaal", "ABB")]),
+    3: (R, "LLM-Powered Agentic AI Systems for Next-Generation Smart Grids",
+        [("Xin Chen", "Texas A&M University"), ("Thomas Overbye", "Texas A&M University"),
+         ("Elnaz Kabir", "Texas A&M University"), ("Tianqiao Zhao", "University of Texas at Arlington")]),
+}
+def tut(n, part):
+    room, title, speakers = TUTORIALS[n]
+    item = {"kind": "tutorial", "label": f"Tutorial {n} · Part {part} of 2", "room": room, "title": title}
+    if part == 1:
+        item["people"] = [["Speaker", name, aff] for name, aff in speakers]
+    return item
 DAYS = [
  {"tab": "Day 1", "short": "Mon · Oct 26", "title": "Day 1 — Monday, October 26",
   "sub": "Workshops & tutorials · Registration opens 8:00 AM · Welcome reception 6:00 PM", "slots": [
   slot("08:00 – 17:00", [{"kind": "special", "label": "Registration", "room": REG, "title": "Main Registration Desk Open"}], "all day"),
   slot("09:00 – 10:30", [
     {"kind": "workshop", "label": "Workshop · Part 1 of 4", "room": C, "title": W1, "meta": "Keynotes: two speakers, 30-minute talk + 15-minute Q&A each", "glance": W1},
-    {"kind": "tutorial", "label": "Tutorial 2 · Part 1 of 2", "room": T, "title": "Agentic AI for Active Distribution Networks"},
-    {"kind": "tutorial", "label": "Tutorial 3 · Part 1 of 2", "room": R, "title": "LLM-Powered Agentic AI"},
-    {"kind": "tutorial", "label": "Tutorial 1 · Part 1 of 2", "room": K, "title": "Quantum Secure 6G"}], "morning"),
+    tut(2, 1),
+    tut(3, 1),
+    tut(1, 1)], "morning"),
   slot("10:30 – 11:00", [brk("Morning Coffee & Networking")]),
   slot("11:00 – 12:30", [
     {"kind": "workshop", "label": "Workshop · Part 2 of 4", "room": C, "title": W1, "meta": "Panel: four speakers, 12-minute talk + 3-minute Q&A each, then a 30-minute discussion"},
-    {"kind": "tutorial", "label": "Tutorial 2 · Part 2 of 2", "room": T, "title": "Agentic AI for Active Distribution Networks"},
-    {"kind": "tutorial", "label": "Tutorial 3 · Part 2 of 2", "room": R, "title": "LLM-Powered Agentic AI"},
-    {"kind": "tutorial", "label": "Tutorial 1 · Part 2 of 2", "room": K, "title": "Quantum Secure 6G"}]),
+    tut(2, 2),
+    tut(3, 2),
+    tut(1, 2)]),
   slot("12:30 – 13:30", [brk("Lunch & Networking", C)]),
   slot("13:30 – 15:30", [
     {"kind": "workshop", "label": "Workshop · Part 3 of 4", "room": C, "title": W1, "meta": f"Paper session: Cybersecurity, AI, and Threat Detection · Includes the {W2} workshop",
