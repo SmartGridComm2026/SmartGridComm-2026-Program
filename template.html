@@ -148,17 +148,17 @@ function papers(groups){
   return `<div class="papers">${groups.map(g => `${many && g.title ? `<h4>${esc(g.title)}</h4>` : ""}${g.papers.map(([id, ti, au]) =>
     `<div class="pp"><div class="pid">${esc(id)}</div><div class="ptitle">${esc(ti)}</div><div class="pauth">${esc(au)}</div></div>`).join("")}`).join("")}</div>`;
 }
-function speakers(list){
+function speakers(list, label){
   if (!list || !list.length) return "";
-  return `<div class="papers"><h4>Speakers</h4>${list.map(([n, a, t]) =>
-    `<div class="pp"><div class="ptitle">${esc(n)}, <span class="pauth">${esc(a)}</span></div><div class="pauth"><em>${esc(t)}</em></div></div>`).join("")}</div>`;
+  return `<div class="papers"><h4>${esc(label || "Speakers")}</h4>${list.map(([n, a, t]) =>
+    `<div class="pp"><div class="ptitle">${esc(n)}, <span class="pauth">${esc(a)}</span></div>${t ? `<div class="pauth"><em>${esc(t)}</em></div>` : ""}</div>`).join("")}</div>`;
 }
 function card(i){
   const people = (i.people||[]).map(([r,n,a]) => `<div class="who">${r==="Affiliation" ? `<b>${esc(n)}</b>` : `${esc(r)}: <b>${esc(n)}</b>${a?` (${esc(a)})`:""}`}</div>`).join("");
   return `<div class="sx k-${i.kind}${i.tbd?" tbd":""}">${i.room?`<span class="room">${esc(i.room)}</span>`:""}`+
     `<span class="kind">${esc(i.label || KINDS[i.kind])}</span><h3>${esc(i.title)}</h3>${people}`+
     `${i.talk?`<div class="talk">${esc(i.talk)}</div>`:""}`+
-    `${i.chair?`<div class="chair">${esc(i.chair)}</div>`:""}${i.meta?`<div class="meta">${esc(i.meta)}</div>`:""}${speakers(i.speakers)}${papers(i.groups)}</div>`;
+    `${i.chair?`<div class="chair">${esc(i.chair)}</div>`:""}${i.meta?`<div class="meta">${esc(i.meta)}</div>`:""}${speakers(i.speakers, i.speakersLabel)}${papers(i.groups)}</div>`;
 }
 function gItem(i){
   const k = i.gk || i.label || KINDS[i.kind];
