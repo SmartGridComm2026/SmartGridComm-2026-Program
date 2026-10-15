@@ -69,6 +69,7 @@ nav.days button[aria-selected="true"] small{color:rgba(255,255,255,.85)}
 .pauth{font-size:.84rem;color:var(--muted)}
 .chair{font-size:.9rem;color:var(--muted);margin:4px 0 2px}
 .sx .talk{font-size:.95rem;font-style:italic;margin-top:4px}
+.sx .desc{font-size:.9rem;margin-top:6px;max-width:75ch}
 .intro{padding:0 20px 14px;color:var(--muted);font-size:.95rem;max-width:80ch;display:grid;gap:4px}
 .intro a{color:var(--brand)}
 
@@ -158,7 +159,7 @@ function card(i){
   return `<div class="sx k-${i.kind}${i.tbd?" tbd":""}">${i.room?`<span class="room">${esc(i.room)}</span>`:""}`+
     `<span class="kind">${esc(i.label || KINDS[i.kind])}</span><h3>${esc(i.title)}</h3>${people}`+
     `${i.talk?`<div class="talk">${esc(i.talk)}</div>`:""}`+
-    `${i.chair?`<div class="chair">${esc(i.chair)}</div>`:""}${i.meta?`<div class="meta">${esc(i.meta)}</div>`:""}${speakers(i.speakers, i.speakersLabel)}${papers(i.groups)}</div>`;
+    `${i.chair?`<div class="chair">${esc(i.chair)}</div>`:""}${i.meta?`<div class="meta">${esc(i.meta)}</div>`:""}${i.desc?`<p class="desc">${esc(i.desc)}</p>`:""}${speakers(i.speakers, i.speakersLabel)}${papers(i.groups)}</div>`;
 }
 function gItem(i){
   const k = i.gk || i.label || KINDS[i.kind];

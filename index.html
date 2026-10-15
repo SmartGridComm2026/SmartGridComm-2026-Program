@@ -74,6 +74,7 @@ nav.days button[aria-selected="true"] small{color:rgba(255,255,255,.85)}
 .pauth{font-size:.84rem;color:var(--muted)}
 .chair{font-size:.9rem;color:var(--muted);margin:4px 0 2px}
 .sx .talk{font-size:.95rem;font-style:italic;margin-top:4px}
+.sx .desc{font-size:.9rem;margin-top:6px;max-width:75ch}
 .intro{padding:0 20px 14px;color:var(--muted);font-size:.95rem;max-width:80ch;display:grid;gap:4px}
 .intro a{color:var(--brand)}
 
@@ -294,7 +295,7 @@ const DAYS = [
 {
 "kind": "break",
 "title": "Lunch & Networking",
-"room": "Century I & II"
+"room": "Pre-Function I & II"
 }
 ]
 },
@@ -514,7 +515,7 @@ const DAYS = [
 "tab": "Day 2",
 "short": "Tue · Oct 27",
 "title": "Day 2 — Tuesday, October 27",
-"sub": "Opening, keynotes & parallel paper sessions · Gala dinner 7:00 PM",
+"sub": "Opening, keynotes & parallel paper sessions · Reception 6:00 PM · Gala dinner 7:00 PM",
 "slots": [
 {
 "start": "08:00",
@@ -1005,6 +1006,20 @@ const DAYS = [
 ]
 },
 {
+"start": "18:00",
+"end": "19:00",
+"note": null,
+"items": [
+{
+"kind": "social",
+"label": "Networking",
+"room": "Century I & II / Pre-Function I & II",
+"title": "Reception",
+"glance": "Reception"
+}
+]
+},
+{
 "start": "19:00",
 "end": "22:00",
 "note": null,
@@ -1110,6 +1125,7 @@ const DAYS = [
 "OPAL-RT Corporation"
 ]
 ],
+"desc": "The rapid growth of AI-powered applications across various industries has fueled an unprecedented demand to build and power new data centers, creating challenges in understanding their implications for control and protection. This panel discusses the importance of model validation and the key role of HIL testing in the reliable interconnection and continuous operation of data centers. It will explore the key regulatory and operational drivers that necessitate HIL testing.",
 "speakers": [
 [
 "Ashish Upreti",
@@ -1703,7 +1719,7 @@ function card(i){
   return `<div class="sx k-${i.kind}${i.tbd?" tbd":""}">${i.room?`<span class="room">${esc(i.room)}</span>`:""}`+
     `<span class="kind">${esc(i.label || KINDS[i.kind])}</span><h3>${esc(i.title)}</h3>${people}`+
     `${i.talk?`<div class="talk">${esc(i.talk)}</div>`:""}`+
-    `${i.chair?`<div class="chair">${esc(i.chair)}</div>`:""}${i.meta?`<div class="meta">${esc(i.meta)}</div>`:""}${speakers(i.speakers, i.speakersLabel)}${papers(i.groups)}</div>`;
+    `${i.chair?`<div class="chair">${esc(i.chair)}</div>`:""}${i.meta?`<div class="meta">${esc(i.meta)}</div>`:""}${i.desc?`<p class="desc">${esc(i.desc)}</p>`:""}${speakers(i.speakers, i.speakersLabel)}${papers(i.groups)}</div>`;
 }
 function gItem(i){
   const k = i.gk || i.label || KINDS[i.kind];

@@ -157,7 +157,7 @@ DAYS = [
     tut(2, 2),
     tut(3, 2),
     tut(1, 2)]),
-  slot("12:30 – 13:30", [brk("Lunch & Networking", C)]),
+  slot("12:30 – 13:30", [brk("Lunch & Networking", REG)]),
   slot("13:30 – 15:30", [
     {"kind": "workshop", "label": "Workshop · Part 3 of 4", "room": C, "title": W1, "meta": f"Paper session: Cybersecurity, AI, and Threat Detection (short talks followed by a poster session) · Includes the {W2} workshop",
      "groups": ws_groups("Workshop 1 - Cyber-Physical Power System Resilience PM 1")},
@@ -174,7 +174,7 @@ DAYS = [
   slot("18:00 – 20:00", [{"kind": "social", "label": "Networking", "room": "Block T Bar & Grill", "title": "Welcome Reception", "meta": "Texas A&M Hotel & Conference Center"}]),
  ]},
  {"tab": "Day 2", "short": "Tue · Oct 27", "title": "Day 2 — Tuesday, October 27",
-  "sub": "Opening, keynotes & parallel paper sessions · Gala dinner 7:00 PM", "slots": [
+  "sub": "Opening, keynotes & parallel paper sessions · Reception 6:00 PM · Gala dinner 7:00 PM", "slots": [
   slot("08:00 – 17:00", [{"kind": "special", "label": "Registration", "room": REG, "title": "Registration Desk Open"}], "all day"),
   slot("08:45 – 09:00", [{"kind": "special", "label": "Welcome", "room": C, "title": "Welcome & Opening Remarks",
      "people": [["Speakers", "Dr. Kate Davis & Dr. Narasimha Reddy", "Texas A&M University"]]}]),
@@ -187,6 +187,7 @@ DAYS = [
      "people": [["Affiliation", "Texas A&M University", ""]], "talk": "Enhancing the Resilience of Large-Scale Electric Grids", "gk": "Keynote II", "glance": "Dr. Tom Overbye, Texas A&M University"}]),
   slot("14:30 – 14:45", [brk("Afternoon Coffee Break")]),
   slot("14:45 – 17:15", [paper_session("DAC 2"), paper_session("CO 2"), paper_session("Joint 1", R), paper_session("CPS 2")], "parallel"),
+  slot("18:00 – 19:00", [{"kind": "social", "label": "Networking", "room": f"{C} / {REG}", "title": "Reception", "glance": "Reception"}]),
   slot("19:00 – 22:00", [{"kind": "social", "label": "Networking", "room": C, "title": "Gala Dinner", "meta": "Featuring the Aggie Wranglers"}]),
  ]},
  {"tab": "Day 3", "short": "Wed · Oct 28", "title": "Day 3 — Wednesday, October 28",
@@ -199,6 +200,11 @@ DAYS = [
   slot("10:15 – 12:15", [{"kind": "panel", "label": "Panel 1 · Organized by OPAL-RT", "room": C,
      "title": "Understanding the Role of Hardware-in-the-Loop Testing in Supporting Reliable Data Center Interconnections and Grid Operations",
      "people": [["Moderator", "Zerui Dong", "OPAL-RT Corporation"]],
+     "desc": ("The rapid growth of AI-powered applications across various industries has fueled an unprecedented demand "
+              "to build and power new data centers, creating challenges in understanding their implications for control "
+              "and protection. This panel discusses the importance of model validation and the key role of HIL testing in "
+              "the reliable interconnection and continuous operation of data centers. It will explore the key regulatory "
+              "and operational drivers that necessitate HIL testing."),
      "speakers": [["Ashish Upreti", "Google", "Data Center Owner's perspectives on model validation and the use of HIL testing tools"],
                   ["Zerui Dong", "OPAL-RT Corporation", "Derisking Data Center Design, Testing, and Grid Integration through High-Fidelity Modeling and Real-Time Simulations"],
                   ["Billy Yancey", "Electric Power Engineers", "Practical challenges and regulatory gaps in model validation of data centers"]],

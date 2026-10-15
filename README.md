@@ -33,7 +33,7 @@ With no argument, the script looks for the spreadsheet in the parent folder.
 |---|---|
 | Paper sessions: session titles, paper IDs, titles, authors, rooms | Spreadsheet tabs *Web Version Main Program-Sessio* and *Web Version Workshop-Only Sessi* |
 | Session chairs | `CHAIRS` in `build_program.py` (copied from the *Session-Paper Map* tab) |
-| Keynotes, panels, welcomes, breaks, receptions, times | `DAYS` in `build_program.py`, kept in sync with the live website program (last synced 2026-10-12) |
+| Keynotes, panels, welcomes, breaks, receptions, times | `DAYS` in `build_program.py`, kept in sync with the live website program (last synced 2026-10-15, with the Run of Show) |
 | Header, dates, footer text | `CONF` in `template.html` |
 
 ## Open questions for reviewers
@@ -53,4 +53,4 @@ choice shown in **bold**.
 
 ### Still to be announced
 
-Talk titles for Keynotes II and III, Panel 2 (G3-Alliance) panelists, and chairs for two sessions (Data Analytics 4; Control & Operation 3).
+Keynote III talk title and the chair for Data Analytics & Computation Session 4.
