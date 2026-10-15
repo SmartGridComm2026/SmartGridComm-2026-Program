@@ -188,7 +188,7 @@ DAYS = [
   slot("14:30 – 14:45", [brk("Afternoon Coffee Break")]),
   slot("14:45 – 17:15", [paper_session("DAC 2"), paper_session("CO 2"), paper_session("Joint 1", R), paper_session("CPS 2")], "parallel"),
   slot("18:00 – 19:00", [{"kind": "social", "label": "Networking", "room": f"{C} / {REG}", "title": "Reception", "glance": "Reception"}]),
-  slot("19:00 – 22:00", [{"kind": "social", "label": "Networking", "room": C, "title": "Gala Dinner", "meta": "Featuring the Aggie Wranglers"}]),
+  slot("19:00 – 22:00", [{"kind": "social", "label": "Networking", "room": C, "title": "Gala Dinner", "meta": "Featuring the Aggie Wranglers, followed by a SmartGridComm 2027 preview"}]),
  ]},
  {"tab": "Day 3", "short": "Wed · Oct 28", "title": "Day 3 — Wednesday, October 28",
   "sub": "Keynote, industry panels & parallel paper sessions", "slots": [
@@ -228,7 +228,7 @@ DAYS = [
   slot("10:00 – 10:15", [brk("Morning Coffee Break")]),
   slot("10:15 – 12:30", [paper_session("DAC 4"), paper_session("CO 5"), paper_session("Joint 2"), paper_session("CPS 4")], "parallel"),
   slot("12:30 – 14:00", [{"kind": "special", "label": "Lunch & Closing Session", "room": C,
-     "title": "Best Paper Awards, Closing & SmartGridComm 2027 Preview", "glance": "Best Paper Awards & Closing"}]),
+     "title": "Best Paper Awards & Closing Session", "glance": "Best Paper Awards & Closing"}]),
   slot("14:00 – 15:30", [{"kind": "special", "label": "Optional Tours", "title": "Walking Tour & Technical Tours",
      "meta": "Campus walking tour, followed by a technical tour of the Global Cyber Research Institute (GCRI) in the Blocker Building"}]),
  ]},
