@@ -136,9 +136,11 @@ TUTORIALS = {  # number -> (room, full title, [(speaker, affiliation), ...]) fro
 def tut(n, part):
     room, title, speakers = TUTORIALS[n]
     item = {"kind": "tutorial", "label": f"Tutorial {n} · Part {part} of 2", "room": room, "title": title}
-    # speakers are listed per tutorial, not per part, so both parts show the whole team
-    item["speakers"] = [[name, aff, ""] for name, aff in speakers]
-    item["speakersLabel"] = "Tutorial speakers"
+    if part == 1:  # speakers are listed per tutorial, not per part, so show the team once
+        item["speakers"] = [[name, aff, ""] for name, aff in speakers]
+        item["speakersLabel"] = "Tutorial speakers"
+    else:
+        item["meta"] = "Continued from Part 1"
     return item
 DAYS = [
  {"tab": "Day 1", "short": "Mon · Oct 26", "title": "Day 1 — Monday, October 26",
