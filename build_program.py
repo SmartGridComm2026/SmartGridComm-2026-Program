@@ -29,7 +29,8 @@ TRACKS = {  # session-name prefix -> (kind, long label, short label)
 CHAIRS = {
     "DAC 1": "Ying Zhang (Oklahoma State University) · Co-chair: Di Shi",
     "DAC 2": "Md Zahidul Islam (Southern Illinois University)",
-    "DAC 3": "Yuzhang Lin (New York University)",
+    "DAC 3": "Yuzhang Lin (New York University) · Co-chair: Nicolò Ripamonti",
+    "DAC 4": "Alexandru Ștefanov (TU Delft)",
     "CO 1": "Hao Huang (University of Tennessee Knoxville)",
     "CO 2": "Dileep Cheerla (GridAxon) · Co-chair: Hao Huang",
     "CO 3": "Xin Chen (Texas A&M University)",
@@ -37,7 +38,7 @@ CHAIRS = {
     "CO 5": "Oliver Kosut (Arizona State University)",
     "CN 1": "Ioannis (Yannis) Zografopoulos · Co-chair: Anurag Srivastava",
     "Joint 1": "Daisuke Mashima · Co-chair: Alexandru Ștefanov",
-    "Joint 2": "Eman Hammad (Texas A&M University)",
+    "Joint 2": "Eman Hammad (Texas A&M University) · Co-chair: Mucun Sun",
     "CPS 1": "Daisuke Mashima (Singapore University of Technology and Design) · Co-chair: Charalambos (Harrys) Konstantinou",
     "CPS 2": "Kevin Jin (University of Arkansas) · Co-chair: Charalambos (Harrys) Konstantinou",
     "CPS 3": "Taesic Kim (University of Missouri) · Co-chair: Abubakar Sadiq Sani",
@@ -147,7 +148,9 @@ DAYS = [
   "sub": "Workshops & tutorials · Registration opens 8:00 AM · Welcome reception 6:00 PM", "slots": [
   slot("08:00 – 17:00", [{"kind": "special", "label": "Registration", "room": REG, "title": "Main Registration Desk Open"}], "all day"),
   slot("09:00 – 10:30", [
-    {"kind": "workshop", "label": "Workshop · Part 1 of 4", "room": C, "title": W1, "meta": "Keynotes: two speakers, 30-minute talk + 15-minute Q&A each", "glance": W1},
+    {"kind": "workshop", "label": "Workshop · Part 1 of 4", "room": C, "title": W1,
+     "people": [["Keynote", "Dr. Kate Davis", "Texas A&M University"]], "talk": "Rethinking Cyber-Physical Grid Resilience in an AI-Enabled World",
+     "meta": "Keynotes: two speakers, 30-minute talk + 15-minute Q&A each", "glance": W1},
     tut(2, 1),
     tut(3, 1),
     tut(1, 1)], "morning"),
