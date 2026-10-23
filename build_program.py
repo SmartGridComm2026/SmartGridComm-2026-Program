@@ -157,7 +157,7 @@ DAYS = [
   slot("10:30 – 11:00", [brk("Morning Coffee & Networking")]),
   slot("11:00 – 12:30", [
     {"kind": "workshop", "label": "Workshop · Part 2 of 4", "room": C, "title": W1,
-     "speakersLabel": "Panelists", "speakers": [["Dr. Manimaran Govindarasu", "Iowa State University", "AI-Driven Cybersecurity for Future Grids"], ["Dr. Anurag Srivastava", "West Virginia University", ""], ["Dr. Mark Rice", "Pacific Northwest National Laboratory", ""], ["Dr. Shamsun Nahar Edib", "Montana State University", ""]],
+     "speakersLabel": "Panelists", "speakers": [["Dr. Manimaran Govindarasu", "Iowa State University", "AI-Driven Cybersecurity for Future Grids"], ["Dr. Anurag Srivastava", "West Virginia University", "Cyber-Physical-Human Resilience from the Grid Edge to the Control Room"], ["Dr. Mark Rice", "Pacific Northwest National Laboratory", "Failure Is Inevitable. Resilience Is a Design Choice."], ["Dr. Shamsun Nahar Edib", "Montana State University", ""]],
      "meta": "Panel: 12-minute talk + 3-minute Q&A each, then a 30-minute discussion"},
     tut(2, 2),
     tut(3, 2),
